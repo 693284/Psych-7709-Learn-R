@@ -25,6 +25,8 @@ Do simple math with numbers, addition, subtraction, multiplication, division
 1+2
 3-2
 4*6
+5/3
+(1+6+4)/5
 
 ```
 
@@ -32,6 +34,16 @@ Do simple math with numbers, addition, subtraction, multiplication, division
 # problem 2
 
 put numbers into variables, do simple math on the variables
+
+```{r}
+
+zoren <- 1
+abc <- 123
+
+```
+
+# problem 3
+
 
 ```{r}
 
