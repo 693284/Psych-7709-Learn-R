@@ -38,17 +38,57 @@ put numbers into variables, do simple math on the variables
 ```{r}
 
 zoren <- 1
-abc <- 123
+abc <- 2
+zoren + abc
+
+x <- c(1,2,3)
+y <- c(5,6,7)
+
+x+y
+x*y
+x/y
 
 ```
 
 # problem 3
-
+a code that will put numbers form 1 to a 100 in a variable using for loop 
 
 ```{r}
 
-zoren <- 1
-abc <- 123
+z<- length(100) # start with an empty length variable and then plug in 100 into it
+for (x in 1:100){
+  z[x] <- x
+}
+print(z)
+```
+Same code using a seq function
+```{r}
+z<- seq(1,100,1)
+print(z)
+```
+# problem 4
+here I am finding a sum from 1 to 100
+
+```{r}
+sum(1:100)
 
 ```
+# problem 6
+listing only odd numbers from 1 to 100
+
+Same code using a seq function
+```{r}
+z<- seq(1,100,2)
+print(z)
+```
+
+
+
+
+
+
+
+
+
+
 
