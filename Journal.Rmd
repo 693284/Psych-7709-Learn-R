@@ -73,6 +73,18 @@ here I am finding a sum from 1 to 100
 sum(1:100)
 
 ```
+
+# problem 5
+Writing a function to find the sum of all integers between any two intergers.
+```{r}
+func_addingintergers <- function(a,b) {
+  return(sum(seq(a,b,1)))
+  
+}
+
+func_addingintergers(1,10)
+func_addingintergers(87,90)
+```
 # problem 6
 listing only odd numbers from 1 to 100
 
