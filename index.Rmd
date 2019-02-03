@@ -19,7 +19,7 @@ output: html_document
 
 # **LabJournal**
 
-My expermintation with my website 
+My experimentation with my website 
 
 ## How to use
 
