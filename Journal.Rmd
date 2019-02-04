@@ -93,11 +93,86 @@ Same code using a seq function
 z<- seq(1,100,2)
 print(z)
 ```
+# going over a lesson on 2/4/2019
+```{r}
+a<- 1
+b<-"Hello World"
+d<-"3"
+print(a)
+
+class(d)
+
+vector<- c(1,2,3,4,5,6,7,8)
+vector[2:4]
+vector[c(2,2,2,2,2)]
+vector[vector <6] # show the numbers less than 7
+vector[vector>=6] # greater or equal to 6
+vector[vector!=4] # show numbers that are not 5
+
+vector[8]<-3000 # put 3000 in the place of 8th number
+vector
+
+vector[1:2] <- 10
+
+class(vector)
+vector[7]<- "j" # put a number in the 7th place in the vector
+
+vector
+
+a<-c("1","2","3")
+class(a)
+b<- a
+class(b)
+as.numeric(b) # store charecters 123 as a number
+
+a<- "ljjasjdflsjasf;lasdjflk;asdjfl;asdjfl"
+strsplit(a,split="") # if you had a paragraph and you wanted to split the paragraph or put a period in R
+
+a[1]
+
+b[(1)][5]
+
+example_list <- list(a=11, b=4, d=c(1,2,3,4))
+example_list
 
 
+data.frame() # particular way of structuring data
 
 
+f<- matrix(0,nrow = 5, ncol = 3) # creating 5 rows and 3 columns
 
+first_names <- c("asdf", "Asdfasd","asdfasdf")
+ages<-c(3343,23122,67456)
+grades<-c(89,56,99)
+
+everybody <- data.frame(first_names,ages,grades)
+
+everybody$ages[2] <- 12
+```
+
+# promblem 7
+
+
+```{r}
+sum(1:100)
+
+```
+
+# problem 10a
+
+```{r}
+z<-c(10,11,12,13,14,15,16,17,18,19)
+mean_zoren <- function(x) {
+  mean_func <-0 # i need to initialize something if i want to use it in something else
+  for (i in 1:length(x)) {
+    mean_func<-mean_func + x[i]
+    
+  }
+  mean_func<- mean_func/length(x)
+    return(mean_func)
+  }
+mean_zoren(z)
+```
 
 
 
