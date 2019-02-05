@@ -154,7 +154,9 @@ everybody$ages[2] <- 12
 
 
 ```{r}
-sum(1:100)
+data1 <- c(1,2,3)
+data1[1]
+data1[-1]
 
 ```
 

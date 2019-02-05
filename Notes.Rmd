@@ -1,0 +1,73 @@
+---
+title: "Notes"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+# going over a lesson on 2/4/2019
+```{r}
+a<- 1
+b<-"Hello World"
+d<-"3"
+print(a)
+
+class(d)
+
+vector<- c(1,2,3,4,5,6,7,8)
+vector[2:4]
+vector[c(2,2,2,2,2)]
+vector[vector <6] # show the numbers less than 7
+vector[vector>=6] # greater or equal to 6
+vector[vector!=4] # show numbers that are not 5
+
+vector[8]<-3000 # put 3000 in the place of 8th number
+vector
+
+vector[1:2] <- 10
+
+class(vector)
+vector[7]<- "j" # put a number in the 7th place in the vector
+
+vector
+
+a<-c("1","2","3")
+class(a)
+b<- a
+class(b)
+as.numeric(b) # store charecters 123 as a number
+
+a<- "ljjasjdflsjasf;lasdjflk;asdjfl;asdjfl"
+strsplit(a,split="") # if you had a paragraph and you wanted to split the paragraph or put a period in R
+
+a[1]
+
+b[(1)][5]
+
+example_list <- list(a=11, b=4, d=c(1,2,3,4))
+example_list
+
+
+data.frame() # particular way of structuring data
+
+
+f<- matrix(0,nrow = 5, ncol = 3) # creating 5 rows and 3 columns
+
+first_names <- c("asdf", "Asdfasd","asdfasdf")
+ages<-c(3343,23122,67456)
+grades<-c(89,56,99)
+
+everybody <- data.frame(first_names,ages,grades)
+
+everybody$ages[2] <- 12
+```
+
