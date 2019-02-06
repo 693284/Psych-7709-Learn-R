@@ -151,12 +151,32 @@ everybody$ages[2] <- 12
 ```
 
 # promblem 7
-
+Generating prime numbers from a list of numbers from 1 to 1000
 
 ```{r}
-data1 <- c(1,2,3)
-data1[1]
-data1[-1]
+x <- seq(1:1000)
+y <- (0)
+for (i in 2:999) {
+  y<- c(x[y<=i],x[x>i & x%% i >0])
+  x<-y
+}
+y
+
+```
+
+# Problem 8
+Generating random numbers from 1 to 100
+
+```{r}
+sample(1:100, 100, replace = T) 
+
+```
+
+
+# problem 9
+
+```{r}
+sample(1:100, 25, replace = T) 
 
 ```
 
@@ -165,7 +185,7 @@ data1[-1]
 ```{r}
 z<-c(10,11,12,13,14,15,16,17,18,19)
 mean_zoren <- function(x) {
-  mean_func <-0 # i need to initialize something if i want to use it in something else
+  mean_func <-0 # I need to initialize something if I want to use it in something else
   for (i in 1:length(x)) {
     mean_func<-mean_func + x[i]
     
@@ -175,8 +195,37 @@ mean_zoren <- function(x) {
   }
 mean_zoren(z)
 ```
+# problem 10b
+writing my own function for the mean
+
+```{r}
+mean_function <- function(z)
+  return(sum(z)/length(z))
+test_numbers<-c(4,30,12,10)
+mean_function(test_numbers)
+
+```
+
+# problem 10c
 
 
+```{r}
+z<-c(5,6,7,8,9,10)
+mode_function <- function(z) {
+  while(length(z) > 2) {
+    loc <- match(c(max(z),min(z)),z)
+    z<-z[-loc]
+  }
+  if (length(z) == 2) {
+     z <- (z[1]+z[2])/2
+    }
+  return(z)
+}
+mode_function
+
+  
+
+```
 
 
 

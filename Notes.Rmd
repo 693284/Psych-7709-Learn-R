@@ -71,3 +71,9 @@ everybody <- data.frame(first_names,ages,grades)
 everybody$ages[2] <- 12
 ```
 
+```{r}
+data1 <- c(1,2,3)
+data1[1]
+data1[-1]
+
+```
