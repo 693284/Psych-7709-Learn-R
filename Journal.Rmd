@@ -207,7 +207,7 @@ mean_function(test_numbers)
 ```
 
 # problem 10c
-
+finding median
 
 ```{r}
 z<-c(5,6,7,8,9,10)
@@ -221,12 +221,40 @@ mode_function <- function(z) {
     }
   return(z)
 }
-mode_function
+mode_function (z)
 
   
 
 ```
 
+# problem 10d
+descriptive statistics - the range
+```{r}
+z<-c(20,21,22,23,24,25,26,27,28,29,30)
+my_range<- function(z) {
+  range_function <- max(z)-min(z)
+  return(range_function) }
+my_range(z)
+  
 
+```
 
+# problem 10e
+descriptive statistics - the standard deviation
+
+```{r}
+z<-c(20,21,22,23,24,25,26,27,28,29,30)
+my_StandardDeviation<- function(z) {
+  mean_function <- mean(z)
+  var <- 0
+  for (i in 1:length(z)){
+    var<- var + (mean_function - x[i])^2
+    var<- var/length(z)
+    StDev <- sqrt(var)
+    }
+return(StDev)
+my_StandardDeviation(z)
+}
+    
+```
 
