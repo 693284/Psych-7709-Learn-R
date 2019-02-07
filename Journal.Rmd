@@ -258,3 +258,37 @@ my_StandardDeviation(z)
     
 ```
 
+# problem 11
+counting how many variables are in the string
+
+```{r}
+my_string <- "this one is not that bad"
+nchar(my_string)
+
+```
+
+# problem 12
+counting how many words are in the string
+```{r}
+my_string <- "this one is not that bad"
+count_words <- length(strsplit(my_string,' ')[[1]])
+print(count_words)
+```
+
+# problem 13
+counting how many sentences are in the string
+```{r}
+my_string <- "This class is very hands on. You learn by practice. Looking forward to disecting more problems."
+count_sentences <- length(strsplit(my_string,"\\.")[[1]])
+print(count_sentences)
+```
+
+# problem 14
+counting how many times a specific character occurs in a string
+
+```{r}
+my_string <- "one small step for man, one giant leap for mankind"
+find <-"a"
+count_character <- length(which(strsplit(my_string,"")[[1]]==find))
+print(count_character)
+```
