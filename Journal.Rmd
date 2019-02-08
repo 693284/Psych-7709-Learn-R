@@ -292,3 +292,18 @@ find <-"a"
 count_character <- length(which(strsplit(my_string,"")[[1]]==find))
 print(count_character)
 ```
+
+# problem 15
+logical test to see whether a word can be found within the text of another string
+
+
+
+
+
+
+# problem 16
+Putting current computer time in milliseconds into a variable
+```{r}
+print(as.numeric(Sys.time())*1000, digits=15)
+```
+

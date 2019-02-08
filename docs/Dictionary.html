@@ -408,7 +408,59 @@ div.tocify {
 </div>
 
 
-
+<div id="list-of-functions" class="section level1">
+<h1>List of functions</h1>
+</div>
+<div id="general-bits" class="section level1">
+<h1>General bits</h1>
+<ol style="list-style-type: decimal">
+<li>help(topic) function enables you to describe the function</li>
+</ol>
+<pre class="r"><code>help(&quot;mode&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>?topic Usually, a name or character string specifying the topic for which help is sought</li>
+</ol>
+<pre class="r"><code>?mode</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Is() function lists objects to be examined or defined</li>
+</ol>
+<pre class="r"><code>ls()</code></pre>
+<pre><code>## [1] &quot;abc&quot;   &quot;x&quot;     &quot;z&quot;     &quot;zoren&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>dir() function - lists the files in a directory/folder</li>
+</ol>
+<pre class="r"><code>dir()</code></pre>
+<pre><code>##  [1] &quot;_site.yml&quot;               &quot;Dictionary.Rmd&quot;         
+##  [3] &quot;Dictionary_cache&quot;        &quot;docs&quot;                   
+##  [5] &quot;images&quot;                  &quot;index.Rmd&quot;              
+##  [7] &quot;Journal.Rmd&quot;             &quot;Journal_cache&quot;          
+##  [9] &quot;Journal_files&quot;           &quot;LabJournalWebsite.Rproj&quot;
+## [11] &quot;Links.Rmd&quot;               &quot;Notes.Rmd&quot;              
+## [13] &quot;Notes_cache&quot;             &quot;README.md&quot;</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>list.files() function - List the Files in a Directory/Folder</li>
+</ol>
+<pre class="r"><code>list.files()</code></pre>
+<pre><code>##  [1] &quot;_site.yml&quot;               &quot;Dictionary.Rmd&quot;         
+##  [3] &quot;Dictionary_cache&quot;        &quot;docs&quot;                   
+##  [5] &quot;images&quot;                  &quot;index.Rmd&quot;              
+##  [7] &quot;Journal.Rmd&quot;             &quot;Journal_cache&quot;          
+##  [9] &quot;Journal_files&quot;           &quot;LabJournalWebsite.Rproj&quot;
+## [11] &quot;Links.Rmd&quot;               &quot;Notes.Rmd&quot;              
+## [13] &quot;Notes_cache&quot;             &quot;README.md&quot;</code></pre>
+</div>
+<div id="input-and-output" class="section level1">
+<h1>Input and Output</h1>
+<ol style="list-style-type: decimal">
+<li>save() function - saves objects in R</li>
+</ol>
+<pre class="r"><code>z&lt;- 30
+save(&quot;z&quot;, file = &quot;zorenfile.txt&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>load() function reloads saved datasets</li>
+</ol>
+<pre class="r"><code>load(file = &quot;zorenfile.txt&quot;)</code></pre>
+</div>
 
 
 
