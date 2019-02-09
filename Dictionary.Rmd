@@ -54,6 +54,19 @@ save("z", file = "zorenfile.txt")
 ```{r}
 load(file = "zorenfile.txt")
 ````
+3. data() function Loads specified data sets, or list the available data sets.
+```{r}
+data(list = character())
+````
+
+4. library() function Loads/Attaches and Listsing of Packages
+```{r}
+library(lib.loc = NULL)
+````
+
+
+
+
 
 
 
