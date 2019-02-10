@@ -293,10 +293,17 @@ count_character <- length(which(strsplit(my_string,"")[[1]]==find))
 print(count_character)
 ```
 
+
+
 # problem 15
 logical test to see whether a word can be found within the text of another string
 
+```{r}
+mytest_word <- "the"
+mytest_sentence <- "It is a nice day in the neighborhood"
+mytest_word%in%mytest_sentence
 
+```
 
 
 
@@ -306,4 +313,18 @@ Putting current computer time in milliseconds into a variable
 ```{r}
 print(as.numeric(Sys.time())*1000, digits=15)
 ```
+
+# problem 17
+Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time
+```{r}
+time_start <- as.numeric(Sys.time())
+ed <- length(100)
+for (i in 1:100) {
+  ed[i] <- i
+}
+time_end <- as.numeric(Sys.time())
+time_run <- time_end - time_start
+print(time_run)
+```
+
 
