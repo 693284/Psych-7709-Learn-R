@@ -468,6 +468,50 @@ save(&quot;z&quot;, file = &quot;zorenfile.txt&quot;)</code></pre>
 <li>library() function Loads/Attaches and Listsing of Packages</li>
 </ol>
 <pre class="r"><code>library(lib.loc = NULL)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>read.table() function Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.</li>
+</ol>
+<pre class="r"><code>apple &lt;- read.table(&quot;Dictionary function.txt&quot;)
+apple</code></pre>
+<pre><code>##   V1   V2 V3    V4
+## 1 Hi this is Zoren</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>read.csv() function Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.</li>
+</ol>
+<pre class="r"><code>read.csv(&quot;input output.csv&quot;)</code></pre>
+<pre><code>##   x y
+## 1 1 a
+## 2 2 b
+## 3 3 c
+## 4 4 d
+## 5 5 e</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>scan() function reads data into a vector or list from the console or file</li>
+</ol>
+<pre class="r"><code>scan (&quot;numbers.txt&quot;)</code></pre>
+<pre><code>## [1] 123456789</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>print() function prints its argument and returns it</li>
+</ol>
+<pre class="r"><code>print(&quot;whats up&quot;)</code></pre>
+<pre><code>## [1] &quot;whats up&quot;</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>cat() function concatenates and prints</li>
+</ol>
+<pre class="r"><code>cat(&quot;whats up&quot;,&quot;duck&quot;)</code></pre>
+<pre><code>## whats up duck</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>write.table() making a document</li>
+</ol>
+<pre class="r"><code>write.table(c(1,2,3,4,5),&quot;numbers.txt&quot;)</code></pre>
+</div>
+<div id="data-creation" class="section level1">
+<h1>Data Creation</h1>
+<ol style="list-style-type: decimal">
+<li>c() function Combines Values into a Vector or List</li>
+</ol>
+<pre class="r"><code>c(1,2,3,4,5)</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
 </div>
 
 

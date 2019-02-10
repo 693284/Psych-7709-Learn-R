@@ -64,6 +64,54 @@ data(list = character())
 library(lib.loc = NULL)
 ````
 
+5. read.table() function Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.
+```{r}
+apple <- read.table("Dictionary function.txt")
+apple
+
+````
+6. read.csv() function Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.
+```{r}
+read.csv("input output.csv")
+
+````
+7. scan() function reads data into a vector or list from the console or file
+```{r}
+scan ("numbers.txt")
+
+````
+8. print() function prints its argument and returns it 
+```{r}
+print("whats up")
+````
+9. cat() function concatenates and prints
+```{r}
+cat("whats up","duck")
+````
+
+10. write.table() making a document 
+
+```{r}
+write.table(c(1,2,3,4,5),"numbers.txt")
+````
+
+
+
+
+
+
+
+
+
+
+# Data Creation
+
+1. c() function Combines Values into a Vector or List
+```{r}
+c(1,2,3,4,5)
+
+````
+
 
 
 
