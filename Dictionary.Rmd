@@ -112,6 +112,87 @@ c(1,2,3,4,5)
 
 ````
 
+2. from:to function -  (where from and to are replaced with numbers, e.g. 1:10)
+
+```{r}
+10:100
+
+
+````
+```{r}
+100:50
+
+
+````
+3. seq() function 
+```{r}
+seq(1,100,3)
+
+
+````
+
+4. rep() function replicates elements of vectors and lists
+```{r}
+rep("programing",3)
+
+
+````
+
+5. data.frame() function creates data frames, tightly coupled collections of variables
+```{r}
+data.frame(2,2,3,3,4,4)
+
+
+````
+```{r}
+data.frame(c(2,2,3,3,4,4),c(5,5,6,6,7,7))
+
+
+````
+
+6. list() function  constructs vector of vectors
+```{r}
+list(c(2,2,3,3,4,4),c(5,5,6,6,7,7))
+
+
+````
+
+7. matrix() function matrix creates a matrix from the given set of values.
+```{r}
+matrix(c(2,2,3,3,4,4))
+
+
+````
+
+8. factor() function
+```{r}
+factor(numbers<-c(2,2,3,3,4,4))
+
+
+````
+
+9. rbind() function combines R Objects by Rows 
+```{r}
+rbind(c(2,2,3,3,4,4),c(1,1,1,1,1,1))
+
+
+````
+
+
+
+
+10. cbind() function combines objects by columns
+```{r}
+cbind(c(2,2,3,3,4,4),c(9,9,9,9,9,9))
+
+
+````
+
+
+
+
+
+
 
 
 

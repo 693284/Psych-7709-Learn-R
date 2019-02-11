@@ -327,4 +327,9 @@ time_run <- time_end - time_start
 print(time_run)
 ```
 
+# problem 18
+Readin a .txt file or .csv file into a variable
 
+```{r}
+
+```

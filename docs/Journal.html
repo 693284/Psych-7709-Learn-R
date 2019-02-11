@@ -716,12 +716,33 @@ print(count_character)</code></pre>
 <div id="problem-15" class="section level1">
 <h1>problem 15</h1>
 <p>logical test to see whether a word can be found within the text of another string</p>
+<pre class="r"><code>mytest_word &lt;- &quot;the&quot;
+mytest_sentence &lt;- &quot;It is a nice day in the neighborhood&quot;
+mytest_word%in%mytest_sentence</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="problem-16" class="section level1">
 <h1>problem 16</h1>
 <p>Putting current computer time in milliseconds into a variable</p>
 <pre class="r"><code>print(as.numeric(Sys.time())*1000, digits=15)</code></pre>
-<pre><code>## [1] 1549662902942.03</code></pre>
+<pre><code>## [1] 1549843507078.97</code></pre>
+</div>
+<div id="problem-17" class="section level1">
+<h1>problem 17</h1>
+<p>Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time</p>
+<pre class="r"><code>time_start &lt;- as.numeric(Sys.time())
+ed &lt;- length(100)
+for (i in 1:100) {
+  ed[i] &lt;- i
+}
+time_end &lt;- as.numeric(Sys.time())
+time_run &lt;- time_end - time_start
+print(time_run)</code></pre>
+<pre><code>## [1] 0.006449938</code></pre>
+</div>
+<div id="problem-18" class="section level1">
+<h1>problem 18</h1>
+<p>Readin a .txt file or .csv file into a variable</p>
 </div>
 
 
