@@ -717,8 +717,9 @@ print(count_character)</code></pre>
 <h1>problem 15</h1>
 <p>logical test to see whether a word can be found within the text of another string</p>
 <pre class="r"><code>mytest_word &lt;- &quot;the&quot;
-mytest_sentence &lt;- &quot;It is a nice day in the neighborhood&quot;
-mytest_word%in%mytest_sentence</code></pre>
+mytest_sentence &lt;- &quot;It is a nice day in the neighborhood&quot; 
+new_splitsentence &lt;- strsplit(mytest_sentence,&quot; &quot;)
+mytest_word %in% new_splitsentence</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="problem-16" class="section level1">
@@ -743,6 +744,19 @@ print(time_run)</code></pre>
 <div id="problem-18" class="section level1">
 <h1>problem 18</h1>
 <p>Readin a .txt file or .csv file into a variable</p>
+</div>
+<div id="harder-problems" class="section level1">
+<h1>Harder Problems</h1>
+<ol style="list-style-type: decimal">
+<li>combining fizz and buzz</li>
+</ol>
+<pre class="r"><code>numb &lt;-seq(1:100)
+  for (j in 1:length(numb)) {
+  if(numb[j]%%3 == 0){
+    numb[j] &lt;-&quot;Fizz&quot;
+  }
+    
+  }</code></pre>
 </div>
 
 

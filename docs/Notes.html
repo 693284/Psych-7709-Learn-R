@@ -484,6 +484,69 @@ data1[1]</code></pre>
 <pre class="r"><code>data1[-1]</code></pre>
 <pre><code>## [1] 2 3</code></pre>
 </div>
+<div id="rd-lecture" class="section level1">
+<h1>2/11/2019 3rd lecture</h1>
+<p>Downloading R repository</p>
+<p>on February 25th we will talk about data analysis assignment 3 (R Basics) - R package assignment - how R code works, how it is shared I will be submiting a link to a new R repository R functions are prepackaged - in Packages - collect functions you have worked on</p>
+<p>click instal tab in packages - repository cran allows y ou to save on cloud - choose your package and install next step load the package - click the package button</p>
+</div>
+<div id="creating-a-simple-function-of-adding-1-to-whatever-number-you-indicated" class="section level1">
+<h1>creating a simple function of adding 1 to whatever number you indicated</h1>
+<p>‘’’ my_function&lt;- function(input){ #body of code return(output) } ‘’’</p>
+<pre class="r"><code>add_one &lt;- function(x){
+  return(x+1)
+}
+  add_one(9)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<p>‘’’ {r, eval=FALSE} add_one &lt;- function(x){ # add one tox, and save the output save_result &lt;- x+1</p>
+<p>another way to do it ‘’’ {r} add_one &lt;- function(x) return(x+1) ‘’’</p>
+<pre class="r"><code>add_one &lt;- function(x) return(x+1)
+
+  add_one(7)</code></pre>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="how-can-we-roll-a-die-and-get-a-number" class="section level1">
+<h1>how can we roll a die and get a number</h1>
+<p>‘’’ {r} sample(1:6,1) roll_dice &lt;- function(){ return(sample(1:6,1)) } roll_dice() # make sure you put something in the parenthesis ‘’’</p>
+<pre class="r"><code>roll_dice &lt;- function(x){
+  return(sample(1:6,1))
+
+}
+  roll_dice()</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>creating a sum function</p>
+<pre class="r"><code>x &lt;- c(1,2,3)
+my_sum &lt;- function(x){  # this is declaring a funtion
+  get_sum&lt;-sum(x)
+  return(get_sum)
+}
+# to declare a variable
+  a &lt;- c(1,2,3)</code></pre>
+</div>
+<div id="find-a-mean-of-restricted-range-of-numbers" class="section level1">
+<h1>find a mean of restricted range of numbers</h1>
+<pre class="r"><code>ranged_mean  &lt;- function(x, min_val, max_val){
+  restricted_values &lt;- x[x&gt;min_val &amp; x &lt; max_val]
+  return(mean(restricted_values))
+
+}
+  some_numbers &lt;-c(3,4,3,2,3,4,5,6,7,8,8,8,9,8)
+  ranged_mean(some_numbers,3,9)</code></pre>
+<pre><code>## [1] 6.444444</code></pre>
+<pre class="r"><code>ranged_mean  &lt;- function(x, min_val, max_val){
+  restricted_values &lt;- x[x&gt;min_val &amp; x &lt; max_val]
+  outputs &lt;- list(original_values = x, 
+                  restricted_values=restricted_values
+                  restricted_mean = mean(restricted_values)
+
+}
+  some_numbers &lt;-c(3,4,3,2,3,4,5,6,7,8,8,8,9,8)
+  ranged_mean(some_numbers,2,4)</code></pre>
+</div>
+<div id="how-to-make-new-r-project" class="section level1">
+<h1>how to make new R project</h1>
+<p>steps 1. 2. 3.</p>
+</div>
 
 
 

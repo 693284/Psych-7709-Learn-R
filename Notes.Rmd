@@ -77,3 +77,114 @@ data1[1]
 data1[-1]
 
 ```
+
+# 2/11/2019 3rd lecture
+Downloading R repository
+
+on February 25th we will talk about data analysis 
+assignment 3 (R Basics) - R package assignment - how R code works, how it is shared
+I will be submiting a link to a new R repository
+R functions are prepackaged - in Packages - collect functions you have worked on
+
+click instal tab in packages - repository cran allows y ou to save on cloud - choose your package and install
+next step load the package - click the package button
+
+
+# creating a simple function of adding 1 to whatever number you indicated
+'''
+my_function<- function(input){
+  #body of code
+return(output)
+}
+'''
+```{r}
+add_one <- function(x){
+  return(x+1)
+}
+  add_one(9)
+
+
+```
+
+'''
+{r, eval=FALSE}
+add_one <- function(x){
+# add one tox, and save the output
+save_result <- x+1
+
+
+another way to do it
+'''
+{r}
+add_one <- function(x) return(x+1)
+'''
+```{r}
+add_one <- function(x) return(x+1)
+
+  add_one(7)
+
+
+```
+
+# how can we roll a die and get a number
+'''
+{r}
+sample(1:6,1)
+roll_dice <- function(){
+return(sample(1:6,1))
+}
+roll_dice() # make sure you put something in the parenthesis
+'''
+```{r}
+roll_dice <- function(x){
+  return(sample(1:6,1))
+
+}
+  roll_dice()
+
+```
+
+creating a sum function 
+```{r}
+x <- c(1,2,3)
+my_sum <- function(x){  # this is declaring a funtion
+  get_sum<-sum(x)
+  return(get_sum)
+}
+# to declare a variable
+  a <- c(1,2,3)
+```
+# find a mean of restricted range of numbers
+```{r}
+ranged_mean  <- function(x, min_val, max_val){
+  restricted_values <- x[x>min_val & x < max_val]
+  return(mean(restricted_values))
+
+}
+  some_numbers <-c(3,4,3,2,3,4,5,6,7,8,8,8,9,8)
+  ranged_mean(some_numbers,3,9)
+
+```
+
+```{r, eval=F}
+ranged_mean  <- function(x, min_val, max_val){
+  restricted_values <- x[x>min_val & x < max_val]
+  outputs <- list(original_values = x, 
+                  restricted_values=restricted_values
+                  restricted_mean = mean(restricted_values)
+
+}
+  some_numbers <-c(3,4,3,2,3,4,5,6,7,8,8,8,9,8)
+  ranged_mean(some_numbers,2,4)
+
+```
+
+
+# how to make new R project
+
+steps
+1. 
+2.
+3.
+
+

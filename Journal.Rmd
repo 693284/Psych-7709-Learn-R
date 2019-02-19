@@ -300,9 +300,9 @@ logical test to see whether a word can be found within the text of another strin
 
 ```{r}
 mytest_word <- "the"
-mytest_sentence <- "It is a nice day in the neighborhood"
-mytest_word%in%mytest_sentence
-
+mytest_sentence <- "It is a nice day in the neighborhood" 
+new_splitsentence <- strsplit(mytest_sentence," ")
+mytest_word %in% new_splitsentence
 ```
 
 
@@ -333,3 +333,19 @@ Readin a .txt file or .csv file into a variable
 ```{r}
 
 ```
+
+# Harder Problems
+1. combining fizz and buzz
+```{r,eval=F}
+numb <-seq(1:100)
+  for (j in 1:length(numb)) {
+  if(numb[j]%%3 == 0){
+    numb[j] <-"Fizz"
+  }
+    
+  }
+
+```
+
+
+
