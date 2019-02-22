@@ -347,12 +347,12 @@ numb <-(1:100)
   }
 
 ```
-```{r, eval=F}
+```{r}
 result <-1
-  for (j in 2:100){
+for (j in 2:100){
   if(j %% 3 == 0){
     if (j %% 5 == 0) {
-      result <-print(result, "FizzBuzz", sep = ",") }
+      result <-paste(result, "FizzBuzz", sep = ",") }
         else {result <- paste(result,"Fizz", sep = ", ")
     }
   }
