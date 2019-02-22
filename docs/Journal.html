@@ -750,13 +750,30 @@ print(time_run)</code></pre>
 <ol style="list-style-type: decimal">
 <li>combining fizz and buzz</li>
 </ol>
-<pre class="r"><code>numb &lt;-seq(1:100)
+<pre class="r"><code>numb &lt;-(1:100)
   for (j in 1:length(numb)) {
   if(numb[j]%%3 == 0){
     numb[j] &lt;-&quot;Fizz&quot;
   }
     
+    
   }</code></pre>
+<pre class="r"><code>result &lt;-1
+  for (j in 2:100){
+  if(j %% 3 == 0){
+    if (j %% 5 == 0) {
+      result &lt;-print(result, &quot;FizzBuzz&quot;, sep = &quot;,&quot;) }
+        else {result &lt;- paste(result,&quot;Fizz&quot;, sep = &quot;, &quot;)
+    }
+  }
+  else if (j %% 5 == 0) {
+    result &lt;- paste(result, &quot;Buzz&quot;, sep = &quot;, &quot;)
+  }
+  else {
+    result &lt;- paste(result, j, sep = &quot;, &quot;)
+  }
+}
+print(result)</code></pre>
 </div>
 
 

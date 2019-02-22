@@ -336,16 +336,35 @@ Readin a .txt file or .csv file into a variable
 
 # Harder Problems
 1. combining fizz and buzz
-```{r,eval=F}
-numb <-seq(1:100)
+```{r, eval=FALSE}
+numb <-(1:100)
   for (j in 1:length(numb)) {
   if(numb[j]%%3 == 0){
     numb[j] <-"Fizz"
   }
     
+    
   }
 
 ```
+```{r, eval=F}
+result <-1
+  for (j in 2:100){
+  if(j %% 3 == 0){
+    if (j %% 5 == 0) {
+      result <-print(result, "FizzBuzz", sep = ",") }
+        else {result <- paste(result,"Fizz", sep = ", ")
+    }
+  }
+  else if (j %% 5 == 0) {
+    result <- paste(result, "Buzz", sep = ", ")
+  }
+  else {
+    result <- paste(result, j, sep = ", ")
+  }
+}
+print(result)
 
+```
 
 
