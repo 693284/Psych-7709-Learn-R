@@ -335,7 +335,8 @@ Readin a .txt file or .csv file into a variable
 ```
 
 # Harder Problems
-1. combining fizz and buzz
+# Problem 1. 
+List the numbers from 1 to 100 with the following constraints. If the number can be divided by three evenly, then print Fizz instead of the number. If the number can be divided by five evenly, then print Buzz instead of the number. Finally, if the number can be divided by three and five evenly, then print FizzBuzz instead of the number
 ```{r, eval=FALSE}
 numb <-(1:100)
   for (j in 1:length(numb)) {
@@ -366,5 +367,70 @@ for (j in 2:100){
 print(result)
 
 ```
+
+# Problem 2
+Take text as input, and be able to produce a table that shows the counts for each character in the text
+```{r}
+z <-"lets see what happens"
+table(unlist(strsplit(z,split="")))
+
+```
+
+```{r}
+digits <- c(9,8,7,6,5,4,3,2,1)
+letters <- c("a","s","d","j","k","l","m","n","o")
+table <- data.frame(digits,letters)
+print(table)
+```
+
+# Problem 3
+Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal.
+```{r}
+z<-runif(20000000,0,100)
+hist(z)
+```
+
+# Problem 4
+Create a multiplication table Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.
+```{r}
+z< c(1,2,3,4,5,6,7,8,9)
+for(i in 1:2){
+  for(j in 1:2){
+    print(i*j)
+  }
+}
+
+```
+
+# Problem 5
+Encrypt and Decrypt the Alphabet Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text.
+
+```{r}
+start_sequence <- c(10,20,30,40,50,20,20,30,20,40,50,2)
+numbers <- unique(start_sequence)
+scrambled_numbers <- sample(numbers)
+encryption_key <- data.frame(numbers,scrambled_numbers)
+
+encrypt_numbers <-function(input_sequence,key){
+  encrypted_sequence<-c()
+  for(i in 1:length(input_sequence)){
+    original_number <- input_sequence[i]
+    new_number <- key[key$numbers==original_number,]$scrambled_numbers
+    encrypted_sequence[i] <- new_number
+  }
+  return(encrypted_sequence)
+}
+
+encrypt_numbers(start_sequence,encryption_key)
+
+
+```
+
+
+
+
+
+
+
 
 
