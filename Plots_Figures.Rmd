@@ -1,0 +1,25 @@
+---
+title: "Plots and Figures"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(ggplot2)
+Names <-rep(c("Dara", "Azalea", "Barbi", "Rowena", "Fiona"),each=2)
+MF <- rnorm(10,45,25) # 10 is the number of numbers you want, and 45 to 25 is the range
+Condition <- rep(c("Social","NonSocial"),5)
+Aversity <- rep(c("A","N_A" ),times=c(4,6))
+  plot_df <- data.frame(Names, MF, Condition, Aversity)
+  
+  ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+
+    geom_line()+
+    geom_text(label=Names)+
+    theme_classic()
+
+
+```

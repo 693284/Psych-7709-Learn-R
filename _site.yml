@@ -12,5 +12,7 @@ navbar:
       href: Notes.html
     - text: "Dictionary"
       href: Dictionary.html
+    - text: "Plots_Figures"
+      href: Plots_Figures.html
 output_dir: "docs"
 

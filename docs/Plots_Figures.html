@@ -11,7 +11,7 @@
 
 
 
-<title>Zoren Test</title>
+<title>Plots and Figures</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -308,37 +308,23 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Zoren Test</h1>
+<h1 class="title toc-ignore">Plots and Figures</h1>
 
 </div>
 
 
-<style type="text/css">
-.title {
-  display: none;
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-<h1 id="labjournal"><strong>LabJournal</strong></h1>
-<p>My experimentation with my website</p>
-<h2 id="how-to-use">How to use</h2>
-<ol style="list-style-type: decimal">
-<li><p>fork the repo for this website and follow instructions on read me to get set up. <a href="https://github.com/CrumpLab/LabJournalWebsite" class="uri">https://github.com/CrumpLab/LabJournalWebsite</a></p></li>
-<li><p>Blog/journal what you are doing in R, by editing the Journal.Rmd. See the <a href="https://crumplab.github.io/LabJournalWebsite/Journal.html">Journal page</a> for an example of what to do to get started learning R.</p></li>
-<li><p>See the <a href="https://crumplab.github.io/LabJournalWebsite/Links.html">links page</a> for lots of helpful links on learning R.</p></li>
-<li><p>Change everything to make it your own.</p></li>
-</ol>
-</div>
-<div class="col-sm-6">
-<h3 id="crump-lab-human-cognition-and-performance"><a href="https://crumplab.github.io">Crump Lab: Human Cognition and Performance</a></h3>
-<p><a href = "https://crumplab.github.io"> <img src="images/logo.png" /> </a></p>
-</div>
+<pre class="r"><code>library(ggplot2)
+Names &lt;-rep(c(&quot;Dara&quot;, &quot;Azalea&quot;, &quot;Barbi&quot;, &quot;Rowena&quot;, &quot;Fiona&quot;),each=2)
+MF &lt;- rnorm(10,45,25) # 10 is the number of numbers you want, and 45 to 25 is the range
+Condition &lt;- rep(c(&quot;Social&quot;,&quot;NonSocial&quot;),5)
+Aversity &lt;- rep(c(&quot;A&quot;,&quot;N_A&quot; ),times=c(4,6))
+  plot_df &lt;- data.frame(Names, MF, Condition, Aversity)
+  
+  ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+
+    geom_line()+
+    geom_text(label=Names)+
+    theme_classic()</code></pre>
+<p><img src="Plots_Figures_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 
 
 

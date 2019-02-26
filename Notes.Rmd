@@ -166,7 +166,7 @@ ranged_mean  <- function(x, min_val, max_val){
 
 ```
 
-```{r, eval=F}
+```{r,eval=F}
 ranged_mean  <- function(x, min_val, max_val){
   restricted_values <- x[x>min_val & x < max_val]
   outputs <- list(original_values = x, 
@@ -187,4 +187,154 @@ steps
 2.
 3.
 
+# 2/25/19February 25th data visualization today
+APA paper with papaja on March 25th
+
+making graphs 
+
+a <- data.fram()
+simple reaction time - how fast can you respond to the light
+
+first column DV - simple reaction time
+SRT   IV - how bright the light is  AGE   Subject   Address
+150   Dim
+200   bright
+210
+
+```{r}
+Names <- c("Peter", "Paul", "Mary",NA)
+Ages <- c(100,120,90, 80)
+Sex <- c("M","M","F",NA)
+
+my_dataframe <- data.frame(Names,Ages,Sex) # start adding things in the perenthesis
+```
+
+when you see a graph you will see lines corresponding to the numbers 
+you will have to create a table with  all those numbers 
+
+DV  Gender    XY
+1   B         Y
+2   A         Y
+3   A         x
+can have 100s of numbers
+
+other things I should know 
+my_dataframe$Names  # illustrates a default 
+my_dataframe$Ages
+li
+if u didn't want it to be a factor you have to convert it to a diffrent thing
+my_dataframe$Names <- as.character(my_dataframe$Names)
+
+```{r,}
+library(ggplot2)
+a <- c(1,2,3,2,3,4,5,4, 4, 2)
+b <- c(4,3,4,3,2,1,2,3, 7, 1)
+plot_df <- data.frame(a,b)
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()
+  
+# basic scatterplot
+#ggplot(plot_df, aes(x=a,y=b))+
+ # geom_point()
+
+```
+
+here we are plotting the same graph but addit custom settings 
+
+```{r}
+ggplot(NULL, aes(x=a,y=b))+
+  geom_point(size=2)+
+  geom_smooth(method=lm)+ # this is linear regression line
+  coord_cartesian(xlim=c(0,7),ylim=c(0,10))+ # if you want to increase a range
+  xlab("x-axis label")+ # change a name of x axis
+  ylab("y-axis label")+
+  ggtitle("I made a scatterplot")+ # add a title
+  theme_classic(base_size=12)+ # classic background; base size is the size of the font from 12 to whatever
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+what if u wanted to make a graph but you want it to take only a prortion of the page, like in the corner of the page
+base size will make sure your smaller graph has the same font
+
+3 bars graph
+
+```{r}
+factor_one <- as.factor(c("A","B","C"))
+dv_means <- c(20,30,40)
+dv_SEs   <- c(4,3.4,4)
+plot_df <- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+ # what do you want to go into x and y axis
+  geom_bar(stat="identity")
+
+```
+
+bar graph with 2 factors 
+```{r}
+factor_one <- rep(as.factor(c("A","B","C")),2) # this 2 means repeat ABC twice
+factor_two <- rep(as.factor(c("IIA","IIB")),3)
+dv_means <- c(20,30,40,20,40,40)
+dv_SEs   <- c(4,3.4,4,3,2,4)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means, # aestetics definition has gotten 
+                    group=factor_two, 
+                   # color=factor_two))+  # color here means the border collor
+                    fill=factor_two))+
+  geom_bar(stat="identity", 
+           position="dodge",
+           color="black")
+```
+
+```{r}
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two,
+                    fill=factor_two))+
+  geom_bar(stat="identity", position="dodge")+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(0,100))+
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  ggtitle("Bar graph 2 factors")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+recreating the first figure 
+
+we have 8 names (Dora, Rita, Lisa)
+
+# 1st promblem in the 4th assignment - we will have names column - each name will appear twice in each condition
+measurement - Mean freaquncy
+
+Names   MF    Condition
+Dara    60    social cond
+Dara    60    none social
+
+```{r}
+Names <-rep(c("Dara", "Azalea", "Barbi", "Rowena", "Fiona"),each=2)
+MF <- rnorm(10,45,25) # 10 is the number of numbers you want, and 45 to 25 is the range
+Condition <- rep(c("Social","NonSocial"),5)
+Aversity <- rep(c("A","N_A" ),times=c(4,6))
+  plot_df <- data.frame(Names, MF, Condition, Aversity)
+  
+  ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+
+    geom_line()+
+    geom_text(label=Names)+
+    theme_classic()
+
+
+```
 
