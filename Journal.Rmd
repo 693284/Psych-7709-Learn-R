@@ -557,6 +557,38 @@ while (z > 0) {
 
 ```
 
+# Problem 11
+Random Tic-Tac-Toe Imagine that two players make completely random choices when playing tic-tac-toe. Each game will either end in a draw or one of the two players will win. Create a monte-carlo simulation of this “random” version of tic-tac-toe. Out 10,000 simulations, what proportion of the time is the game won versus drawn?
+
+```{r, eval=F}
+game <- function(){
+
+  # Init Board
+  board <-  c(0,0,0,
+              0,0,0,
+              0,0,0)
+  winner = NULL
+
+  while(is.null(winner)){
+
+    #player 1:
+    next_move <- random_move(board)
+    board <- make_move(board, 1, next_move)
+    winner <- evaluate_win(board)
+
+    if(is.null(winner)){
+      #player 2:
+      next_move <- random_move(board)
+      board <- make_move(board, 2, next_move)
+      winner <- evaluate_win(board)
+    }
+  }
+  return(winner)
+}
+
+```
+
+
 
 
 
