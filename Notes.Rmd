@@ -235,7 +235,7 @@ ggplot(plot_df, aes(x=a,y=b))+
   
 # basic scatterplot
 #ggplot(plot_df, aes(x=a,y=b))+
- # geom_point()
+ # geom_point()  
 
 ```
 

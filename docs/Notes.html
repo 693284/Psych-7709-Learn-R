@@ -555,7 +555,7 @@ my_sum &lt;- function(x){  # this is declaring a funtion
 <p>APA paper with papaja on March 25th</p>
 <p>making graphs</p>
 <p>a &lt;- data.fram() simple reaction time - how fast can you respond to the light</p>
-<p>first column DV - simple reaction time SRT IV - how bright the light is AGE Subject Address 150 Dim 200 bright 210</p>
+<p>first column DV - simple reaction time SRT IV - how bright the light is AGE Subject Address 150 Dim 200 bright 210 bright</p>
 <pre class="r"><code>Names &lt;- c(&quot;Peter&quot;, &quot;Paul&quot;, &quot;Mary&quot;,NA)
 Ages &lt;- c(100,120,90, 80)
 Sex &lt;- c(&quot;M&quot;,&quot;M&quot;,&quot;F&quot;,NA)
@@ -569,11 +569,11 @@ a &lt;- c(1,2,3,2,3,4,5,4, 4, 2)
 b &lt;- c(4,3,4,3,2,1,2,3, 7, 1)
 plot_df &lt;- data.frame(a,b)
 ggplot(plot_df, aes(x=a,y=b))+
-  geom_point()</code></pre>
+  geom_point() # connect the data to diff parts of the graph</code></pre>
 <p><img src="Notes_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code># basic scatterplot
 #ggplot(plot_df, aes(x=a,y=b))+
- # geom_point()</code></pre>
+ # geom_point()  </code></pre>
 <p>here we are plotting the same graph but addit custom settings</p>
 <pre class="r"><code>ggplot(NULL, aes(x=a,y=b))+
   geom_point(size=2)+
