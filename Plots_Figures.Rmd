@@ -23,3 +23,30 @@ Aversity <- rep(c("A","N_A" ),times=c(4,6))
 
 
 ```
+
+
+
+```{r}
+library(ggplot2)
+ nonsocial_risk <- c(45,12,4,28,33,58,60)
+  social_risk <- c(20,20,4,50,48,52,60)
+  figure_df <- data.frame(nonsocial_risk,social_risk)
+  
+  ggplot(figure_df, aes(x=nonsocial_risk,y=social_risk)) + 
+    geom_point(size=3) + 
+    geom_smooth(method="lm", se = FALSE) +
+    theme_classic() +
+    xlab("Avarage Frequency of Non Social Risk") +
+    ylab("Avarage Frequency of Social Risk") +
+    scale_y_continuous(breaks = seq(0, 100, by = 10)) +
+    scale_x_continuous(breaks = seq(0, 100, by = 10))
+
+
+```
+
+
+
+
+
+
+

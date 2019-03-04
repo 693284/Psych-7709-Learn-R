@@ -199,7 +199,7 @@ first column DV - simple reaction time
 SRT   IV - how bright the light is  AGE   Subject   Address
 150   Dim
 200   bright
-210
+210   bright 
 
 ```{r}
 Names <- c("Peter", "Paul", "Mary",NA)
@@ -231,7 +231,7 @@ a <- c(1,2,3,2,3,4,5,4, 4, 2)
 b <- c(4,3,4,3,2,1,2,3, 7, 1)
 plot_df <- data.frame(a,b)
 ggplot(plot_df, aes(x=a,y=b))+
-  geom_point()
+  geom_point() # connect the data to diff parts of the graph
   
 # basic scatterplot
 #ggplot(plot_df, aes(x=a,y=b))+
