@@ -62,19 +62,19 @@ library(ggplot2)
 
 ```{r}
 library(ggplot2)
-  study_group <- rep(as.factor(c("Doctor Study", "Butcher Study", "firefighter_study", "Construction Worker Study")),4)
-  likely_occurance <- rep(c("women more likely", "equilly likely","man more likely"),3)
-  dv_means <- c(20,30,40,20,40,40)
-dv_SEs   <- c(4,3.4,4,3,2,4)
+  study_group <- rep(as.factor(c("Doctor Study", "Butcher Study", "firefighter_study", "Construction Worker Study")),3)
+  occurance <- rep(as.factor(c("women more likely", "equilly likely","man more likely")),4)
+  dv_means <- c(20,30,40,40)
+dv_SEs   <- c(4,3.4,3)
 plot_df3 <- data.frame(study_group,
-                      likely_occurance,
+                      occurance,
                       dv_means,
                       dv_SEs)
   
-  ggplot(plot_df, aes(x=study_group,y=dv_means, # aestetics definition has gotten 
-                    group=likely_occurance, 
+  ggplot(plot_df3, aes(x=study_group,y=dv_means, # aestetics definition has gotten 
+                    group=occurance, 
                    # color=factor_two))+  # color here means the border collor
-                    fill=likely_occurance))+
+                    fill=occurance))+
   geom_bar(stat="identity", 
            position="dodge",
            color="black")
