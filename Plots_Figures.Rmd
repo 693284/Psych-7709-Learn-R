@@ -44,9 +44,63 @@ library(ggplot2)
 
 ```
 
+```{r}
+library(ggplot2)
+  study_group <- c(doctor_study = rep("Doctor Study", 6), butcher_study = rep("Butcher Study", 6), 
+             firefighter_study = rep("Firefighter Study", 6), 
+             construction_worker_study = rep("Construction Worker Study", 6))
+  eval_data <- c(2,3,4,2,3,6,5,4,3,4,4,2,2,7,7,6,6,8,6,6,5,6,7,8)
+  figure_df2 <- data.frame(study_group,eval_data)
+  
+  ggplot(figure_df2, aes(factor(study_group), eval_data)) +
+    geom_violin(fill="gray70") +
+    theme_classic() +
+    ylab("Person X evaluations") +
+    xlab("")
+  
+```
 
+```{r}
+library(ggplot2)
+  study_group <- rep(as.factor(c("Doctor Study", "Butcher Study", "firefighter_study", "Construction Worker Study")),4)
+  likely_occurance <- rep(c("women more likely", "equilly likely","man more likely"),3)
+  dv_means <- c(20,30,40,20,40,40)
+dv_SEs   <- c(4,3.4,4,3,2,4)
+plot_df3 <- data.frame(study_group,
+                      likely_occurance,
+                      dv_means,
+                      dv_SEs)
+  
+  ggplot(plot_df, aes(x=study_group,y=dv_means, # aestetics definition has gotten 
+                    group=likely_occurance, 
+                   # color=factor_two))+  # color here means the border collor
+                    fill=likely_occurance))+
+  geom_bar(stat="identity", 
+           position="dodge",
+           color="black")
+  
+```
 
+```{r}
+factor_one <- rep(as.factor(c("A","B","C")),2) # this 2 means repeat ABC twice
+factor_two <- rep(as.factor(c("IIA","IIB")),3)
+dv_means <- c(20,30,40,20,40,40)
+dv_SEs   <- c(4,3.4,4,3,2,4)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
 
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means, # aestetics definition has gotten 
+                    group=factor_two, 
+                   # color=factor_two))+  # color here means the border collor
+                    fill=factor_two))+
+  geom_bar(stat="identity", 
+           position="dodge",
+           color="black")
+```
 
 
 
