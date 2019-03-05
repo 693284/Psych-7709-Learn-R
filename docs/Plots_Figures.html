@@ -339,6 +339,56 @@ Aversity &lt;- rep(c(&quot;A&quot;,&quot;N_A&quot; ),times=c(4,6))
     scale_y_continuous(breaks = seq(0, 100, by = 10)) +
     scale_x_continuous(breaks = seq(0, 100, by = 10))</code></pre>
 <p><img src="Plots_Figures_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>library(ggplot2)
+  study_group &lt;- c(doctor_study = rep(&quot;Doctor Study&quot;, 6), butcher_study = rep(&quot;Butcher Study&quot;, 6), 
+             firefighter_study = rep(&quot;Firefighter Study&quot;, 6), 
+             construction_worker_study = rep(&quot;Construction Worker Study&quot;, 6))
+  eval_data &lt;- c(2,3,4,2,3,6,5,4,3,4,4,2,2,7,7,6,6,8,6,6,5,6,7,8)
+  figure_df2 &lt;- data.frame(study_group,eval_data)
+  
+  ggplot(figure_df2, aes(factor(study_group), eval_data)) +
+    geom_violin(fill=&quot;gray70&quot;) +
+    theme_classic() +
+    ylab(&quot;Person X evaluations&quot;) +
+    xlab(&quot;&quot;)</code></pre>
+<p><img src="Plots_Figures_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>library(ggplot2)
+  study_group &lt;- rep(as.factor(c(&quot;Doctor Study&quot;, &quot;Butcher Study&quot;, &quot;firefighter_study&quot;, &quot;Construction Worker Study&quot;)),3)
+  occurance &lt;- rep(as.factor(c(&quot;women more likely&quot;, &quot;equilly likely&quot;,&quot;man more likely&quot;)),4)
+  dv_means &lt;- c(20,30,40,40)
+dv_SEs   &lt;- c(4,3.4,3)
+plot_df3 &lt;- data.frame(study_group,
+                      occurance,
+                      dv_means,
+                      dv_SEs)
+  
+  ggplot(plot_df3, aes(x=study_group,y=dv_means, # aestetics definition has gotten 
+                    group=occurance, 
+                   # color=factor_two))+  # color here means the border collor
+                    fill=occurance))+
+  geom_bar(stat=&quot;identity&quot;, 
+           position=&quot;dodge&quot;,
+           color=&quot;black&quot;)</code></pre>
+<p><img src="Plots_Figures_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>factor_one &lt;- rep(as.factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;)),2) # this 2 means repeat ABC twice
+factor_two &lt;- rep(as.factor(c(&quot;IIA&quot;,&quot;IIB&quot;)),3)
+dv_means &lt;- c(20,30,40,20,40,40)
+dv_SEs   &lt;- c(4,3.4,4,3,2,4)
+plot_df &lt;- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means, # aestetics definition has gotten 
+                    group=factor_two, 
+                   # color=factor_two))+  # color here means the border collor
+                    fill=factor_two))+
+  geom_bar(stat=&quot;identity&quot;, 
+           position=&quot;dodge&quot;,
+           color=&quot;black&quot;)</code></pre>
+<p><img src="Plots_Figures_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 
 
 
