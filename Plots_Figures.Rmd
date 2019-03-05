@@ -71,13 +71,16 @@ plot_df3 <- data.frame(study_group,
                       dv_means,
                       dv_SEs)
   
-  ggplot(plot_df3, aes(x=study_group,y=dv_means, # aestetics definition has gotten 
-                    group=occurance, 
+  ggplot(plot_df3, aes(x=study_group,
                    # color=factor_two))+  # color here means the border collor
                     fill=occurance))+
-  geom_bar(stat="identity", 
-           position="dodge",
-           color="black")
+                  
+  geom_bar(position="fill")+
+          theme_classic() +
+    xlab("") +
+    ylab("Precentage of Participants") +
+    scale_fill_discrete(name = "") +
+    theme(legend.position = "top")
   
 ```
 
