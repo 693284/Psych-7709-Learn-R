@@ -296,6 +296,9 @@ $(document).ready(function () {
 <li>
   <a href="Plots_Figures.html">Plots_Figures</a>
 </li>
+<li>
+  <a href="DataWrangleFlanker_student.html">DataWrangleFlanker_student</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -362,13 +365,16 @@ plot_df3 &lt;- data.frame(study_group,
                       dv_means,
                       dv_SEs)
   
-  ggplot(plot_df3, aes(x=study_group,y=dv_means, # aestetics definition has gotten 
-                    group=occurance, 
+  ggplot(plot_df3, aes(x=study_group,
                    # color=factor_two))+  # color here means the border collor
                     fill=occurance))+
-  geom_bar(stat=&quot;identity&quot;, 
-           position=&quot;dodge&quot;,
-           color=&quot;black&quot;)</code></pre>
+                  
+  geom_bar(position=&quot;fill&quot;)+
+          theme_classic() +
+    xlab(&quot;&quot;) +
+    ylab(&quot;Precentage of Participants&quot;) +
+    scale_fill_discrete(name = &quot;&quot;) +
+    theme(legend.position = &quot;top&quot;)</code></pre>
 <p><img src="Plots_Figures_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>factor_one &lt;- rep(as.factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;)),2) # this 2 means repeat ABC twice
 factor_two &lt;- rep(as.factor(c(&quot;IIA&quot;,&quot;IIB&quot;)),3)
