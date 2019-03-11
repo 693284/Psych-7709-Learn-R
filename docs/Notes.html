@@ -655,6 +655,76 @@ Aversity &lt;- rep(c(&quot;A&quot;,&quot;N_A&quot; ),times=c(4,6))
     theme_classic()</code></pre>
 <p><img src="Notes_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
+<div id="section" class="section level1">
+<h1>3/11/2019</h1>
+<pre class="r"><code>library(dplyr)
+df &lt;- starwars</code></pre>
+</div>
+<div id="some-of-the-moves-you-can-manipulate-the-data-without-a-dplyr-package" class="section level1">
+<h1>some of the moves you can manipulate the data without a dplyr package</h1>
+<p>df$name # dolloar sign gives yoiu the names in the file</p>
+<p>df[1,] # row 1 df[1:4,] # rows 1 to 4 and all of the columns</p>
+<pre class="r"><code>df[df$name==&quot;Luke Skywalker&quot;,] # find luke&#39;s row and give me all of the columns of the skywalker</code></pre>
+<pre><code>## # A tibble: 1 x 13
+##   name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1 Luke~    172    77 blond      fair       blue              19 male  
+## # ... with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<pre class="r"><code>df[df$height &gt;180,]</code></pre>
+<pre><code>## # A tibble: 44 x 13
+##    name  height  mass hair_color skin_color eye_color birth_year gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+##  1 Dart~    202 136   none       white      yellow          41.9 male  
+##  2 Bigg~    183  84   black      light      brown           24   male  
+##  3 Obi-~    182  77   auburn, w~ fair       blue-gray       57   male  
+##  4 Anak~    188  84   blond      fair       blue            41.9 male  
+##  5 Chew~    228 112   brown      unknown    blue           200   male  
+##  6 Boba~    183  78.2 black      fair       brown           31.5 male  
+##  7 IG-88    200 140   none       metal      red             15   none  
+##  8 Bossk    190 113   none       green      red             53   male  
+##  9 &lt;NA&gt;      NA  NA   &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;            NA   &lt;NA&gt;  
+## 10 Qui-~    193  89   brown      fair       blue            92   male  
+## # ... with 34 more rows, and 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<pre class="r"><code>dim(df) #c(number of rows, number of columns)</code></pre>
+<pre><code>## [1] 87 13</code></pre>
+<pre class="r"><code>df &lt;-cbind(df, random_number=runif(dim(df)[1],0,1))</code></pre>
+<p>df<span class="math inline">\(species &lt;- as.factor(df\)</span>species) levels(df$species)</p>
+<p>how many characters have tatooine</p>
+<pre class="r"><code>df[df$homeworld==&quot;Tatooine&quot;,]
+dim(df[df$homeworld==&quot;Tatppome&quot;,)[1]</code></pre>
+</div>
+<div id="group-by-certain-things" class="section level1">
+<h1>group by certain things</h1>
+<p>Dataframe %&gt;%</p>
+<pre class="r"><code>library(dplyr)
+new_df &lt;- df %&gt;% # adding things on
+  filter(height &gt; 100) %&gt;%
+  group_by(homeworld) %&gt;% 
+  summarise(mean_birth_year = mean (birth_year, na.rm = TRUE))</code></pre>
+<pre class="r"><code>View (new_df)
+new_df &lt;- df %&gt;%
+  filter(height &gt;120,
+         height &lt;180,
+         birth_year &gt;20)</code></pre>
+<pre class="r"><code>new_df &lt;- df %&gt;%
+  filter(gender ==&quot;male&quot;)</code></pre>
+<pre class="r"><code>new_df &lt;- df %&gt;%
+  group_by(hair_color) %&gt;%
+  summarise(counts=length(name))</code></pre>
+<pre class="r"><code>new_df &lt;- df %&gt;%
+  group_by(hair_color, eye_color) %&gt;%
+  summarise(mean_years = mean(birth_year,na.rm = TRUE)),
+      sd_years = sd(birth_year,na.rm = TRUE),
+      counts = length(names)</code></pre>
+<p>how many characterers in each movie</p>
+<p>how to load data</p>
+<pre class="r"><code>hsq &lt;- read.csv(data.table(&quot;data/hsq.csv&quot;))</code></pre>
+</div>
+<div id="getwd-function-will-tell-you-where-the-working-directory-is" class="section level1">
+<h1>getwd() function will tell you where the working directory is</h1>
+</div>
 
 
 

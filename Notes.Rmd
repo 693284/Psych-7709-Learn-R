@@ -338,3 +338,94 @@ Aversity <- rep(c("A","N_A" ),times=c(4,6))
 
 ```
 
+
+# 3/11/2019
+
+```{r}
+library(dplyr)
+df <- starwars
+
+
+```
+
+# some of the moves you can manipulate the data without a dplyr package
+df$name # dolloar sign gives yoiu the names in the file
+
+df[1,] # row 1
+df[1:4,] # rows 1 to 4 and all of the columns
+
+```{r}
+df[df$name=="Luke Skywalker",] # find luke's row and give me all of the columns of the skywalker
+df[df$height >180,]
+```
+```{r}
+dim(df) #c(number of rows, number of columns)
+
+df <-cbind(df, random_number=runif(dim(df)[1],0,1))
+```
+
+
+df$species <- as.factor(df$species)
+levels(df$species)
+
+how many characters have tatooine 
+```{r, eval=FALSE}
+df[df$homeworld=="Tatooine",]
+dim(df[df$homeworld=="Tatppome",)[1]
+
+```
+
+# group by certain things
+
+Dataframe %>%
+```{r} 
+library(dplyr)
+new_df <- df %>% # adding things on
+  filter(height > 100) %>%
+  group_by(homeworld) %>% 
+  summarise(mean_birth_year = mean (birth_year, na.rm = TRUE))
+  
+```
+
+```{r}
+View (new_df)
+new_df <- df %>%
+  filter(height >120,
+         height <180,
+         birth_year >20)
+  
+```
+
+
+```{r} 
+new_df <- df %>%
+  filter(gender =="male")
+  
+```
+
+```{r} 
+new_df <- df %>%
+  group_by(hair_color) %>%
+  summarise(counts=length(name))
+  
+```
+
+```{r,eval=FALSE} 
+new_df <- df %>%
+  group_by(hair_color, eye_color) %>%
+  summarise(mean_years = mean(birth_year,na.rm = TRUE)),
+      sd_years = sd(birth_year,na.rm = TRUE),
+      counts = length(names)
+  
+```
+how many characterers in each movie
+
+
+how to load data
+```{r, eval=FALSE} 
+hsq <- read.csv(data.table("data/hsq.csv"))
+
+```
+
+# getwd() function will tell you where the working directory is 
+

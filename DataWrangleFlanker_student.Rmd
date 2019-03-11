@@ -37,7 +37,7 @@ all_data<-data.frame()
 
 # loop to add each file to the dataframe
 for(i in file_names){
-  one_subject <- fread(paste("FlankerData/",i, sep=""))
+  one_subject <- fread(paste("FlankerData/",i, sep="")) # each time I read a file I turn the files into names
   names(one_subject) <- the_headers
   one_subject$subject <- rep(i,dim(one_subject)[1])
   one_subject <- cbind(one_subject, trial= 1:dim(one_subject)[1])
@@ -52,10 +52,22 @@ for(i in file_names){
 
 A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)
 
-```{r}
+```{r, eval=FALSE}
+center_letter <- unlist(lapply(strsplit(all_data$stimulus,""),
+                               FUN = function(x)unlist(x)[2]))
+all_data <- cbind(all_data,center_letter)
+all_data <- all_data %>%
+          mutate(response + tolower(response),
+                 center_letter = tolower(center_letter),
+                 accuracy = response==center_letter)
 
+                               
 
 ```
+# or
+all_data <- all_data %>%
+    mutate(T = response_time - stimulus_onset)
+
 
 ### Get Reaction time on each trial
 
@@ -83,8 +95,9 @@ Check how many trials each subject completed in the congruent and incongruent co
 
 It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms
 
-```{r}
-
+```{r, eval=FALSE}
+restricted <- all_data %>%
+              filter(RT < 2000)
 ```
 
 ## Analysis
@@ -93,8 +106,11 @@ It is common to exclude Reaction times that are very slow. There are many method
 
 1. Get the individual subject mean reaction times for **correct** congruent and incongruent trials.
 
-```{r}
-
+```{r, eval=FALSE}
+subject_meanRTs <- restricted %>%
+                    filter (acccuracy ++ TRUE) %>%
+                    group_by(subject, congruency) %>
+                    summarise(meanRt = mean(mean_))
 ```
 
 2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
