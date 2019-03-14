@@ -52,18 +52,37 @@ for(i in file_names){
 
 A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)
 
-```{r, eval=FALSE}
+```{r}
 center_letter <- unlist(lapply(strsplit(all_data$stimulus,""),
                                FUN = function(x)unlist(x)[2]))
 all_data <- cbind(all_data,center_letter)
 all_data <- all_data %>%
-          mutate(response + tolower(response),
+          mutate(response = tolower(response),
                  center_letter = tolower(center_letter),
                  accuracy = response==center_letter)
 
                                
 
 ```
+
+
+```{r}
+correct_ans = c()
+  for(i in 1:length(all_data$stimulus)){
+      correct_ans <- c(correct_ans, unlist(strsplit(all_data$stimulus[i], ""))[2])
+  }
+
+  correct_resp = c()
+  for(i in 1:length(all_data$response)){
+      if(toupper(all_data$response[i]) == correct_ans[i]){
+        correct_resp <- as.integer(c(correct_resp, 1))
+      }
+        else {correct_resp <- c(correct_resp,0)}
+  }
+  
+  all_data <- cbind(all_data, correct_resp)
+```
+
 # or
 all_data <- all_data %>%
     mutate(T = response_time - stimulus_onset)
@@ -76,7 +95,8 @@ The stimulus_onset column gives a computer timestamp in milliseconds indicating 
 **tip:** notice that the numbers in response_time and stimulus_onset have the class integer64. Unfortunately, ggplot does not play nice with integers in this format. you will need to make sure your RT column is in the class integer or numeric.
 
 ```{r}
-
+reaction_time <- as.numeric(all_data$response_time - all_data$stimulus_onset)
+    all_data <- cbind(all_data,reaction_time)
 ```
 
 
@@ -85,7 +105,14 @@ The stimulus_onset column gives a computer timestamp in milliseconds indicating 
 Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.
 
 ```{r}
+number_subjects <- all_data %>%
+                    filter(congruency == 'C' || congruency == 'I') %>% # filtering all congr and incongr trial
+                    group_by(subject,congruency) %>% # taking subject & congruency column
+                    summarise(counts = length(subject), # here we finding how many subj in both cong & incongr trials
+                              mean_reaction_time = mean(reaction_time), 
+                              accuracy_reaction_time = sum(correct_resp)/length(congruency))
 
+    knitr::kable(number_subjects)
 
 ```
 
@@ -95,9 +122,9 @@ Check how many trials each subject completed in the congruent and incongruent co
 
 It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms
 
-```{r, eval=FALSE}
+```{r}
 restricted <- all_data %>%
-              filter(RT < 2000)
+              filter(reaction_time < 2000)
 ```
 
 ## Analysis
@@ -106,17 +133,22 @@ restricted <- all_data %>%
 
 1. Get the individual subject mean reaction times for **correct** congruent and incongruent trials.
 
-```{r, eval=FALSE}
+```{r}
 subject_meanRTs <- restricted %>%
-                    filter (acccuracy ++ TRUE) %>%
-                    group_by(subject, congruency) %>
-                    summarise(meanRt = mean(mean_))
+                    filter (correct_resp == TRUE) %>%
+                    group_by(subject, congruency) %>%
+                    summarise(meanRt = mean(reaction_time))
 ```
 
 2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
 
 ```{r}
-
+overall_means <- subject_meanRTs %>%
+                        group_by(congruency) %>%
+                        summarise(meanRT = mean(correct_resp),
+                                  SEM = (sd(correct_resp)/sqrt(length(correct_resp))))
+  
+    knitr::kable(overall_means)
   
   
 ```
