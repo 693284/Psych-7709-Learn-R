@@ -438,3 +438,103 @@ hsq <- read.csv(data.table("data/hsq.csv"))
 x <- c(1,2,3,4,5,2,4,7,4,9)
 t.test(x, mu=2)
 ```
+
+SE of the mean is sd/sqrt of N
+T = x-mu / SEM
+T dist = find t value of 10 numbers 10000 times - the t scores make up T distribution
+
+```{r}
+x <- c(1,2,3,4,5,2,4,7,4,9)
+t.test(x, mu=2, alternative = "two.sided")
+```
+
+
+```{r}
+x <- c(1,2,3,4,5,2,4,7,4,9)
+t.test(x, mu=2, alternative = "greater")
+```
+
+Paired T-test
+```{r}
+x <- c(1,2,3,4,5,2,4,7,4,9)
+y <- c(3,2,5,4,3,2,5,6,7,8)
+t.test(x, y, paired=TRUE)
+```
+welch two sample t-test
+
+# simulation of 10000 t-tests
+```{r}
+a <- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$p.value)
+hist(a)
+```
+
+# getting t values instead of p values
+
+```{r}
+a <- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$statistic)
+hist(a)
+```
+
+report_t(t_results)'
+
+in a t-test = testing difference between the means
+
+in an ANOVA = one omnibus tes tells us whether there is a difference
+
+```{r, eval=False}
+Factor1 <- rep(c("A","B","C"),each=5)
+  DV <- rnorm(n=15,mean=0,sd=1)
+  all_data1 <- data.frame(DV,Factor1)
+    View(all_data1)
+
+```
+
+# load a function into package without loading a package - knitr:: kable()
+
+# Randomization Test
+```{r}
+A <- c(1,2,3,4,5,6,7,8,9,10)
+B <- c(2,4,6,8,10,12,14,16,18,20)
+
+all <- c(A,B) 
+
+mean_difference <- c()
+for(i in 1:10000){
+  shuffle <- sample(all)
+  newA <- shuffle[1:10] # first ten num put in a new A
+  newB <- shuffle[11:20] # the next ten nums
+  mean_difference[i] <- mean(newB)-mean(newA) # sizes of mean diff we could have done if we assigned people randomly
+}
+
+observed <- mean(B)-mean(A)
+length(mean_difference[mean_difference >= observed])/10000 # how many means fall within
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

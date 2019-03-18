@@ -724,6 +724,88 @@ new_df &lt;- df %&gt;%
 </div>
 <div id="getwd-function-will-tell-you-where-the-working-directory-is" class="section level1">
 <h1>getwd() function will tell you where the working directory is</h1>
+<p>3/18</p>
+</div>
+<div id="statistics" class="section level1">
+<h1>Statistics</h1>
+<div id="t-test" class="section level2">
+<h2>t test</h2>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,2,4,7,4,9)
+t.test(x, mu=2)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = 2.7391, df = 9, p-value = 0.02288
+## alternative hypothesis: true mean is not equal to 2
+## 95 percent confidence interval:
+##  2.36568 5.83432
+## sample estimates:
+## mean of x 
+##       4.1</code></pre>
+<p>SE of the mean is sd/sqrt of N T = x-mu / SEM T dist = find t value of 10 numbers 10000 times - the t scores make up T distribution</p>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,2,4,7,4,9)
+t.test(x, mu=2, alternative = &quot;two.sided&quot;)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = 2.7391, df = 9, p-value = 0.02288
+## alternative hypothesis: true mean is not equal to 2
+## 95 percent confidence interval:
+##  2.36568 5.83432
+## sample estimates:
+## mean of x 
+##       4.1</code></pre>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,2,4,7,4,9)
+t.test(x, mu=2, alternative = &quot;greater&quot;)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = 2.7391, df = 9, p-value = 0.01144
+## alternative hypothesis: true mean is greater than 2
+## 95 percent confidence interval:
+##  2.694613      Inf
+## sample estimates:
+## mean of x 
+##       4.1</code></pre>
+<p>Paired T-test</p>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,2,4,7,4,9)
+y &lt;- c(3,2,5,4,3,2,5,6,7,8)
+t.test(x, y, paired=TRUE)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  x and y
+## t = -0.80178, df = 9, p-value = 0.4433
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.5285623  0.7285623
+## sample estimates:
+## mean of the differences 
+##                    -0.4</code></pre>
+<p>welch two sample t-test</p>
+</div>
+</div>
+<div id="simulation-of-10000-t-tests" class="section level1">
+<h1>simulation of 10000 t-tests</h1>
+<pre class="r"><code>a &lt;- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$p.value)
+hist(a)</code></pre>
+<p><img src="Notes_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+<div id="getting-t-values-instead-of-p-values" class="section level1">
+<h1>getting t values instead of p values</h1>
+<pre class="r"><code>a &lt;- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$statistic)
+hist(a)</code></pre>
+<p><img src="Notes_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>report_t(t_results)’</p>
+<p>in a t-test = testing difference between the means</p>
+<p>in an ANOVA = one omnibus tes tells us whether there is a difference</p>
+<pre class="r"><code>Factor1 &lt;- rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),each=5)
+  DV &lt;- rnorm(n=15,mean=0,sd=1)
+  all_data1 &lt;- data.frame(DV,Factor1)
+    View(all_data1)</code></pre>
 </div>
 
 
