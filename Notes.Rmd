@@ -429,3 +429,12 @@ hsq <- read.csv(data.table("data/hsq.csv"))
 
 # getwd() function will tell you where the working directory is 
 
+3/18
+
+# Statistics
+
+## t test
+```{r}
+x <- c(1,2,3,4,5,2,4,7,4,9)
+t.test(x, mu=2)
+```
