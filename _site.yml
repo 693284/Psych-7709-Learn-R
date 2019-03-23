@@ -16,5 +16,7 @@ navbar:
       href: Plots_Figures.html
     - text: "DataWrangleFlanker_student"
       href: DataWrangleFlanker_student.html
+    - text: "Statistics"
+      href: Statistics.html
 output_dir: "docs"
 

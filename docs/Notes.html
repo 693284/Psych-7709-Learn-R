@@ -397,6 +397,9 @@ div.tocify {
 <li>
   <a href="DataWrangleFlanker_student.html">DataWrangleFlanker_student</a>
 </li>
+<li>
+  <a href="Statistics.html">Statistics</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -806,6 +809,34 @@ hist(a)</code></pre>
   DV &lt;- rnorm(n=15,mean=0,sd=1)
   all_data1 &lt;- data.frame(DV,Factor1)
     View(all_data1)</code></pre>
+</div>
+<div id="load-a-function-into-package-without-loading-a-package---knitr-kable" class="section level1">
+<h1>load a function into package without loading a package - knitr:: kable()</h1>
+</div>
+<div id="randomization-test" class="section level1">
+<h1>Randomization Test</h1>
+<pre class="r"><code>A &lt;- c(1,2,3,4,5,6,7,8,9,10)
+B &lt;- c(2,4,6,8,10,12,14,16,18,20)
+
+all &lt;- c(A,B) 
+
+mean_difference &lt;- c()
+for(i in 1:10000){
+  shuffle &lt;- sample(all)
+  newA &lt;- shuffle[1:10] # first ten num put in a new A
+  newB &lt;- shuffle[11:20] # the next ten nums
+  mean_difference[i] &lt;- mean(newB)-mean(newA) # sizes of mean diff we could have done if we assigned people randomly
+}
+
+observed &lt;- mean(B)-mean(A)
+length(mean_difference[mean_difference &gt;= observed])/10000 # how many means fall within</code></pre>
+<pre><code>## [1] 0.0118</code></pre>
+<pre class="r"><code>RandomNumbers &lt;- runif(100, min = 0, max = 100)
+hist(RandomNumbers)</code></pre>
+<p><img src="Notes_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<pre class="r"><code>RandomNumbers &lt;- runif(100, min = 0, max = 100)
+hist(RandomNumbers)</code></pre>
+<p><img src="Notes_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 </div>
 
 

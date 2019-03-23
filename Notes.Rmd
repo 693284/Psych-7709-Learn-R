@@ -481,7 +481,7 @@ in a t-test = testing difference between the means
 
 in an ANOVA = one omnibus tes tells us whether there is a difference
 
-```{r, eval=False}
+```{r, eval=F}
 Factor1 <- rep(c("A","B","C"),each=5)
   DV <- rnorm(n=15,mean=0,sd=1)
   all_data1 <- data.frame(DV,Factor1)
@@ -512,10 +512,15 @@ length(mean_difference[mean_difference >= observed])/10000 # how many means fall
 ```
 
 
+```{r}
+RandomNumbers <- runif(100, min = 0, max = 100)
+hist(RandomNumbers)
+```
 
-
-
-
+```{r}
+RandomNumbers <- runif(100, min = 0, max = 100)
+hist(RandomNumbers)
+```
 
 
 

@@ -1,0 +1,58 @@
+---
+title: "Statistics"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+a <- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$p.value)
+hist(a)
+```
+
+
+```{r}
+a <- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$statistic)
+hist(a)
+```
+
+```{r}
+t <- .5
+df <- 9
+(1 - pt(q = abs(t), df = df))*2
+```
+
+```{r}
+t <- 1
+df <- 9
+(1 - pt(q = abs(t), df = df))*2
+```
+
+```{r}
+t <- 1.5
+df <- 9
+(1 - pt(q = abs(t), df = df))*2
+```
+
+```{r}
+t <- 2
+df <- 9
+(1 - pt(q = abs(t), df = df))*2
+```
+
+```{r}
+t <- 2.5
+df <- 9
+(1 - pt(q = abs(t), df = df))*2
+```
+```{r}
+testScores <- rnorm(10, mean = 0, sd = 1)
+t.test(testScores,mu=0)
+t_dist <-runif(10000)
+
+```
+
+
+
