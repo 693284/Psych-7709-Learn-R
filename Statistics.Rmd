@@ -7,6 +7,28 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Creating two samples that come from a normal distribution 
+```{r}
+distribution <- c()
+
+    for(i in 1:10000) {
+    vector_1 <- rnorm(10,0,1)
+    vector_2 <- rnorm(10,0,1)
+    distribution <- c(distribution,mean(vector_2)-mean(vector_1))
+    }
+    y <- hist(distribution)
+```
+
+
+```{r}
+plot(density(distribution))
+```
+
+
+
+
+
+
 ```{r}
 a <- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$p.value)
 hist(a)
@@ -47,6 +69,8 @@ t <- 2.5
 df <- 9
 (1 - pt(q = abs(t), df = df))*2
 ```
+
+
 ```{r}
 testScores <- rnorm(10, mean = 0, sd = 1)
 t.test(testScores,mu=0)
@@ -54,5 +78,61 @@ t_dist <-runif(10000)
 
 ```
 
+# T null distribution
+```{r}
+ T_distribution <- c()
 
+    for(i in 1:10000) {
+      vector_3 <- rnorm(10,0,1)
+      T_distribution <- c(T_distribution,(mean(vector_3)- 0)/(sd(vector_3)/(sqrt(length(vector_3)))))
+    }
+    hist(T_distribution)
+
+```
+
+
+# correlation
+
+```{r}
+x <- rnorm(10,0,1)
+y <- rnorm(10,0,1)
+cor(x,y)
+
+```
+```{r}
+correlation_dist <- c()
+
+    for(i in 1:10000) {
+    vector_1 <- rnorm(10,0,1)
+    vector_2 <- rnorm(10,0,1)
+    correlation_dist <- c(correlation_dist, cor(vector_1,vector_2))
+    }
+
+    hist(correlation_dist)
+```
+
+# ANOVA
+
+```{r}
+A <- c(1,2,3,4)
+B <- c(3,4,5,6)
+C <- c(5,6,7,8)
+Subjects <- rep(1:10,each=4)
+Factor1 <- rep(rep(c("A","B","C"), each = 4), 10)
+Factor2 <- rep(rep(c("1","2"), 2), 10)
+DV <- rnorm(40,0,1)
+
+all_data <- data.frame(Subjects = as.factor(Subjects),
+                       DV,
+                       Factor1,
+                       Factor2)
+```
+
+
+
+
+
+
+
+```
 

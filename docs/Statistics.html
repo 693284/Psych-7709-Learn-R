@@ -319,12 +319,25 @@ $(document).ready(function () {
 </div>
 
 
+<div id="creating-two-samples-that-come-from-a-normal-distribution" class="section level2">
+<h2>Creating two samples that come from a normal distribution</h2>
+<pre class="r"><code>distribution &lt;- c()
+
+    for(i in 1:10000) {
+    vector_1 &lt;- rnorm(10,0,1)
+    vector_2 &lt;- rnorm(10,0,1)
+    distribution &lt;- c(distribution,mean(vector_2)-mean(vector_1))
+    }
+    y &lt;- hist(distribution)</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>plot(density(distribution))</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>a &lt;- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$p.value)
 hist(a)</code></pre>
-<p><img src="Statistics_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code>a &lt;- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$statistic)
 hist(a)</code></pre>
-<p><img src="Statistics_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>t &lt;- .5
 df &lt;- 9
 (1 - pt(q = abs(t), df = df))*2</code></pre>
@@ -351,14 +364,59 @@ t.test(testScores,mu=0)</code></pre>
 ##  One Sample t-test
 ## 
 ## data:  testScores
-## t = 0.025167, df = 9, p-value = 0.9805
+## t = 0.66592, df = 9, p-value = 0.5222
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7104409  0.7264266
+##  -0.6863424  1.2589976
 ## sample estimates:
-##   mean of x 
-## 0.007992849</code></pre>
+## mean of x 
+## 0.2863276</code></pre>
 <pre class="r"><code>t_dist &lt;-runif(10000)</code></pre>
+</div>
+<div id="t-null-distribution" class="section level1">
+<h1>T null distribution</h1>
+<pre class="r"><code> T_distribution &lt;- c()
+
+    for(i in 1:10000) {
+      vector_3 &lt;- rnorm(10,0,1)
+      T_distribution &lt;- c(T_distribution,(mean(vector_3)- 0)/(sd(vector_3)/(sqrt(length(vector_3)))))
+    }
+    hist(T_distribution)</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="correlation" class="section level1">
+<h1>correlation</h1>
+<pre class="r"><code>x &lt;- rnorm(10,0,1)
+y &lt;- rnorm(10,0,1)
+cor(x,y)</code></pre>
+<pre><code>## [1] -0.4421888</code></pre>
+<pre class="r"><code>correlation_dist &lt;- c()
+
+    for(i in 1:10000) {
+    vector_1 &lt;- rnorm(10,0,1)
+    vector_2 &lt;- rnorm(10,0,1)
+    correlation_dist &lt;- c(correlation_dist, cor(vector_1,vector_2))
+    }
+
+    hist(correlation_dist)</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="anova" class="section level1">
+<h1>ANOVA</h1>
+<pre class="r"><code>A &lt;- c(1,2,3,4)
+B &lt;- c(3,4,5,6)
+C &lt;- c(5,6,7,8)
+Subjects &lt;- rep(1:10,each=4)
+Factor1 &lt;- rep(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), each = 4), 10)
+Factor2 &lt;- rep(rep(c(&quot;1&quot;,&quot;2&quot;), 2), 10)
+DV &lt;- rnorm(40,0,1)
+
+all_data &lt;- data.frame(Subjects = as.factor(Subjects),
+                       DV,
+                       Factor1,
+                       Factor2)</code></pre>
+<p>```</p>
+</div>
 
 
 
