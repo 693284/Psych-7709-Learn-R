@@ -11,7 +11,7 @@
 
 
 
-<title>Statistics</title>
+<title>Zoren Test</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -314,51 +314,37 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Statistics</h1>
+<h1 class="title toc-ignore">Zoren Test</h1>
 
 </div>
 
 
-<pre class="r"><code>a &lt;- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$p.value)
-hist(a)</code></pre>
-<p><img src="Statistics_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>a &lt;- replicate(10000,t.test(rnorm(10,0,1),rnorm(10,0,1))$statistic)
-hist(a)</code></pre>
-<p><img src="Statistics_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>t &lt;- .5
-df &lt;- 9
-(1 - pt(q = abs(t), df = df))*2</code></pre>
-<pre><code>## [1] 0.6290713</code></pre>
-<pre class="r"><code>t &lt;- 1
-df &lt;- 9
-(1 - pt(q = abs(t), df = df))*2</code></pre>
-<pre><code>## [1] 0.3434364</code></pre>
-<pre class="r"><code>t &lt;- 1.5
-df &lt;- 9
-(1 - pt(q = abs(t), df = df))*2</code></pre>
-<pre><code>## [1] 0.1678507</code></pre>
-<pre class="r"><code>t &lt;- 2
-df &lt;- 9
-(1 - pt(q = abs(t), df = df))*2</code></pre>
-<pre><code>## [1] 0.07655282</code></pre>
-<pre class="r"><code>t &lt;- 2.5
-df &lt;- 9
-(1 - pt(q = abs(t), df = df))*2</code></pre>
-<pre><code>## [1] 0.03386183</code></pre>
-<pre class="r"><code>testScores &lt;- rnorm(10, mean = 0, sd = 1)
-t.test(testScores,mu=0)</code></pre>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  testScores
-## t = 0.025167, df = 9, p-value = 0.9805
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  -0.7104409  0.7264266
-## sample estimates:
-##   mean of x 
-## 0.007992849</code></pre>
-<pre class="r"><code>t_dist &lt;-runif(10000)</code></pre>
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+<div class="row" style="padding-top: 30px;">
+<div class="col-sm-6">
+<h1 id="labjournal"><strong>LabJournal</strong></h1>
+<p>My experimentation with my website</p>
+<h2 id="how-to-use">How to use</h2>
+<ol style="list-style-type: decimal">
+<li><p>fork the repo for this website and follow instructions on read me to get set up. <a href="https://github.com/CrumpLab/LabJournalWebsite" class="uri">https://github.com/CrumpLab/LabJournalWebsite</a></p></li>
+<li><p>Blog/journal what you are doing in R, by editing the Journal.Rmd. See the <a href="https://crumplab.github.io/LabJournalWebsite/Journal.html">Journal page</a> for an example of what to do to get started learning R.</p></li>
+<li><p>See the <a href="https://crumplab.github.io/LabJournalWebsite/Links.html">links page</a> for lots of helpful links on learning R.</p></li>
+<li><p>Change everything to make it your own.</p></li>
+</ol>
+</div>
+<div class="col-sm-6">
+<h3 id="crump-lab-human-cognition-and-performance"><a href="https://crumplab.github.io">Crump Lab: Human Cognition and Performance</a></h3>
+<p><a href = "https://crumplab.github.io"> <img src="images/logo.png" /> </a></p>
+</div>
 
 
 
