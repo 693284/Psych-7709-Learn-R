@@ -123,26 +123,24 @@ zd <- density(correlation_dist)
 
 # F Values ANOVA
 
-```{r,eval=F}
+```{r}
 A <- c(1,2,3,4)
 B <- c(3,4,5,6)
 C <- c(5,6,7,8)
-Subjects <- rep(1:10,each=4)
+Subjects <- 1:4
 Factor1 <- rep(rep(c("A","B","C"), each = 4), 10)
 Factor2 <- rep(rep(c("1","2"), 2), 10)
 meanvalue_subject <- c(A,B,C)
 
 all_data <- data.frame(Subjects = as.factor(Subjects),
-                       DV,
-                       Factor1,
-                       Factor2)
+                       meanvalue_subject, A,B,C)
     aov_output <- aov(meanvalue_subject~A*B*C, all_data)
 
 library(xtable)
 
 ```
 
-```{r, eval=F}
+```{r}
     knitr::kable(xtable(summary(aov_output)))
 
 ```
