@@ -404,8 +404,8 @@ cor(x,y)</code></pre>
 <h3>Critical value</h3>
 <pre class="r"><code>zd &lt;- density(correlation_dist)
 
-    c_1 &lt;- which(zd$y &gt;= 0.05)
-    abs(zd$x[c_1[1]])</code></pre>
+    allprobvalues &lt;- which(zd$y &gt;= 0.05) # possible values in this vector
+    abs(zd$x[allprobvalues[1]])</code></pre>
 <pre><code>## [1] 0.8110982</code></pre>
 </div>
 </div>
@@ -414,19 +414,95 @@ cor(x,y)</code></pre>
 <pre class="r"><code>A &lt;- c(1,2,3,4)
 B &lt;- c(3,4,5,6)
 C &lt;- c(5,6,7,8)
-Subjects &lt;- rep(1:10,each=4)
+Subjects &lt;- 1:4
 Factor1 &lt;- rep(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), each = 4), 10)
 Factor2 &lt;- rep(rep(c(&quot;1&quot;,&quot;2&quot;), 2), 10)
 meanvalue_subject &lt;- c(A,B,C)
 
 all_data &lt;- data.frame(Subjects = as.factor(Subjects),
-                       DV,
-                       Factor1,
-                       Factor2)
+                       meanvalue_subject, A,B,C)
     aov_output &lt;- aov(meanvalue_subject~A*B*C, all_data)
 
 library(xtable)</code></pre>
+<pre><code>## Warning: package &#39;xtable&#39; was built under R version 3.5.3</code></pre>
 <pre class="r"><code>    knitr::kable(xtable(summary(aov_output)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Df</th>
+<th align="right">Sum Sq</th>
+<th align="right">Mean Sq</th>
+<th align="right">F value</th>
+<th align="right">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">3.75</td>
+<td align="right">0.0888262</td>
+</tr>
+<tr class="even">
+<td>A:B</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.00</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="odd">
+<td>A:B:C</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.00</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td>Residuals</td>
+<td align="right">8</td>
+<td align="right">32</td>
+<td align="right">4</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td>## F Distrib</td>
+<td align="right">ution</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>Subjects &lt;- rep(1:4,3)
+    df1 &lt;- 2
+    df2 &lt;- 8
+
+    Fdistribution &lt;- c()
+    
+    for(i in 1:10000) {
+      A &lt;- rnorm(4,0,1)    # ABC is simulated data
+      B &lt;- rnorm(4,0,1)
+      C &lt;- rnorm(4,0,1)
+      mean_of_subject &lt;- c(A,B,C) # contains all random numbers
+      
+      correlation_dist2 &lt;- (cor(Subjects,mean_of_subject))^2
+      Fdistribution &lt;- c(Fdistribution, (correlation_dist2/(1-correlation_dist2))*(df2/df1))
+    }
+
+    plot(density(Fdistribution ))</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code>zd &lt;- density(Fdistribution)
+
+    allposs_values &lt;- which(zd$y &gt;= 0.05)
+    zd$x[allposs_values[length(allposs_values)]]</code></pre>
+<pre><code>## [1] 1.835938</code></pre>
 </div>
 
 
