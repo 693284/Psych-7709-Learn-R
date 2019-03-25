@@ -522,17 +522,101 @@ RandomNumbers <- runif(100, min = 0, max = 100)
 hist(RandomNumbers)
 ```
 
+## 3/25/19
+
+```{r}
+a<- rnorm(10,0,1)
+b<- rnorm(10,0,1)
+mean_diff <- mean(a) - mean(b)
+mean_diff <- replicate(10000,
+                       mean(rnorm(10,0,1))-mean(rnorm(10,0,1)))
+sort(mean_diff)[9500]
 
 
+```
+```{r}
+hist(mean_diff)
+
+```
+
+show that the properties of the t-dist are the same as the properties of the analytic dist
 
 
+```{r}
+pt(q=c(.5,1,1.5,2,2.5),df=9) 
+```
 
 
+```{r}
+pt(q=c(.5,1,1.5,2,2.5),df=9) # looking the sampling distribution of t
+t_s <- replicate(10000,t.test(rnorm(10,0,1),mu=0)$statistic)
+length(t_s[t_s > .5])
+```
+
+```{r}
+hist(t_s)
+
+```
+
+```{r}
+t_s <- replicate(10000,t.test(rnorm(10,0,1),mu=0)$statistic)
+length(t_s[t_s < .5])/10000
+```
+
+```{r}
+t_s <- replicate(10000,t.test(rnorm(10,0,1),mu=0)$statistic)
+length(t_s[t_s < 1])/10000
+```
+
+```{r,eval=F}
+t_s <- replicate(10000,t.test(rnorm(10,0,1),mu=0)$statistic)
+length(t_s[t_s < .5])/10000
+sim_ps <- c(length(t_s[t_s <.5])/1000
+ral_ps
+sim_ps
+sum(abs)
+```
 
 
+sampling distribution of correlations
 
 
+```{r}
+cor(rnorm(10,0,1), rnorm(10,0,1))
+```
 
+replicate 10000 times
+```{r}
+hist(replicate(10000,cor(rnorm(10,0,1), rnorm(10,0,1))))
+```
+
+converge all r values to absolute values and sort them from smallest 0 to largest
+
+```{r}
+sim_rs<-replicate(10000,cor(rnorm(100,0,1),rnorm(100,0,1)))
+sort(abs(sim_rs))[9500]
+```
+
+F distribution
+
+calculate f value for the main effect of group
+
+```{r}
+run_anova <- function(){
+A <- rnorm(4,0,1)
+B <- rnorm(4,0,1)
+C <- rnorm(4,0,1)
+conds<- rep(c("A","B","C"),each=4)
+DV<-c(A,B,C)
+df<-data.frame(conds,DV)
+sum_out <-summary(aov(DV~conds,df))
+return(sum_out[[1]]$'F value'[1])
+}
+save_fs <-replicate(10000,run_anova())
+hist(save_fs)
+sort(save_fs)[9500]
+qf(.95,2,9)
+```
 
 
 
