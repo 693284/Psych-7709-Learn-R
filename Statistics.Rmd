@@ -111,21 +111,40 @@ correlation_dist <- c()
     hist(correlation_dist)
 ```
 
-# ANOVA
+### Critical value
 
 ```{r}
+zd <- density(correlation_dist)
+
+    c_1 <- which(zd$y >= 0.05)
+    abs(zd$x[c_1[1]])
+```
+
+
+# F Values ANOVA
+
+```{r,eval=F}
 A <- c(1,2,3,4)
 B <- c(3,4,5,6)
 C <- c(5,6,7,8)
 Subjects <- rep(1:10,each=4)
 Factor1 <- rep(rep(c("A","B","C"), each = 4), 10)
 Factor2 <- rep(rep(c("1","2"), 2), 10)
-DV <- rnorm(40,0,1)
+meanvalue_subject <- c(A,B,C)
 
 all_data <- data.frame(Subjects = as.factor(Subjects),
                        DV,
                        Factor1,
                        Factor2)
+    aov_output <- aov(meanvalue_subject~A*B*C, all_data)
+
+library(xtable)
+
+```
+
+```{r, eval=F}
+    knitr::kable(xtable(summary(aov_output)))
+
 ```
 
 
@@ -134,5 +153,14 @@ all_data <- data.frame(Subjects = as.factor(Subjects),
 
 
 
-```
+
+
+
+
+
+
+
+
+
+
 

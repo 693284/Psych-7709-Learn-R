@@ -364,13 +364,13 @@ t.test(testScores,mu=0)</code></pre>
 ##  One Sample t-test
 ## 
 ## data:  testScores
-## t = 0.66592, df = 9, p-value = 0.5222
+## t = -0.50296, df = 9, p-value = 0.6271
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.6863424  1.2589976
+##  -0.9994128  0.6358388
 ## sample estimates:
 ## mean of x 
-## 0.2863276</code></pre>
+## -0.181787</code></pre>
 <pre class="r"><code>t_dist &lt;-runif(10000)</code></pre>
 </div>
 <div id="t-null-distribution" class="section level1">
@@ -389,7 +389,7 @@ t.test(testScores,mu=0)</code></pre>
 <pre class="r"><code>x &lt;- rnorm(10,0,1)
 y &lt;- rnorm(10,0,1)
 cor(x,y)</code></pre>
-<pre><code>## [1] -0.4421888</code></pre>
+<pre><code>## [1] 0.4236064</code></pre>
 <pre class="r"><code>correlation_dist &lt;- c()
 
     for(i in 1:10000) {
@@ -400,22 +400,33 @@ cor(x,y)</code></pre>
 
     hist(correlation_dist)</code></pre>
 <p><img src="Statistics_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div id="critical-value" class="section level3">
+<h3>Critical value</h3>
+<pre class="r"><code>zd &lt;- density(correlation_dist)
+
+    c_1 &lt;- which(zd$y &gt;= 0.05)
+    abs(zd$x[c_1[1]])</code></pre>
+<pre><code>## [1] 0.8110982</code></pre>
 </div>
-<div id="anova" class="section level1">
-<h1>ANOVA</h1>
+</div>
+<div id="f-values-anova" class="section level1">
+<h1>F Values ANOVA</h1>
 <pre class="r"><code>A &lt;- c(1,2,3,4)
 B &lt;- c(3,4,5,6)
 C &lt;- c(5,6,7,8)
 Subjects &lt;- rep(1:10,each=4)
 Factor1 &lt;- rep(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), each = 4), 10)
 Factor2 &lt;- rep(rep(c(&quot;1&quot;,&quot;2&quot;), 2), 10)
-DV &lt;- rnorm(40,0,1)
+meanvalue_subject &lt;- c(A,B,C)
 
 all_data &lt;- data.frame(Subjects = as.factor(Subjects),
                        DV,
                        Factor1,
-                       Factor2)</code></pre>
-<p>```</p>
+                       Factor2)
+    aov_output &lt;- aov(meanvalue_subject~A*B*C, all_data)
+
+library(xtable)</code></pre>
+<pre class="r"><code>    knitr::kable(xtable(summary(aov_output)))</code></pre>
 </div>
 
 
