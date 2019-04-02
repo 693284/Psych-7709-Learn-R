@@ -138,6 +138,8 @@ subject_meanRTs <- restricted %>%
                     filter (correct_resp == TRUE) %>%
                     group_by(subject, congruency) %>%
                     summarise(meanRt = mean(reaction_time))
+          knitr::kable(subject_meanRTs)
+
 ```
 
 2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
@@ -145,7 +147,7 @@ subject_meanRTs <- restricted %>%
 ```{r}
 overall_means <- subject_meanRTs %>%
                         group_by(congruency) %>%
-                        summarise(meanRT = mean(correct_resp),
+                        summarise(meanRt = mean(meanRt),
                                   SEM = (sd(correct_resp)/sqrt(length(correct_resp))))
   
     knitr::kable(overall_means)
