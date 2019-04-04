@@ -741,13 +741,245 @@ all_data &lt;- all_data %&gt;%
 <pre class="r"><code>subject_meanRTs &lt;- restricted %&gt;%
                     filter (correct_resp == TRUE) %&gt;%
                     group_by(subject, congruency) %&gt;%
-                    summarise(meanRt = mean(reaction_time))</code></pre>
+                    summarise(meanRt = mean(reaction_time))
+          knitr::kable(subject_meanRTs)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">subject</th>
+<th align="left">congruency</th>
+<th align="right">meanRt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.txt</td>
+<td align="left">C</td>
+<td align="right">556.5341</td>
+</tr>
+<tr class="even">
+<td align="left">1.txt</td>
+<td align="left">I</td>
+<td align="right">551.4944</td>
+</tr>
+<tr class="odd">
+<td align="left">10.txt</td>
+<td align="left">C</td>
+<td align="right">898.2683</td>
+</tr>
+<tr class="even">
+<td align="left">10.txt</td>
+<td align="left">I</td>
+<td align="right">986.6410</td>
+</tr>
+<tr class="odd">
+<td align="left">11.txt</td>
+<td align="left">C</td>
+<td align="right">714.1111</td>
+</tr>
+<tr class="even">
+<td align="left">11.txt</td>
+<td align="left">I</td>
+<td align="right">826.5222</td>
+</tr>
+<tr class="odd">
+<td align="left">12.txt</td>
+<td align="left">C</td>
+<td align="right">612.5843</td>
+</tr>
+<tr class="even">
+<td align="left">12.txt</td>
+<td align="left">I</td>
+<td align="right">567.7500</td>
+</tr>
+<tr class="odd">
+<td align="left">13.txt</td>
+<td align="left">C</td>
+<td align="right">531.9882</td>
+</tr>
+<tr class="even">
+<td align="left">13.txt</td>
+<td align="left">I</td>
+<td align="right">635.6962</td>
+</tr>
+<tr class="odd">
+<td align="left">14.txt</td>
+<td align="left">C</td>
+<td align="right">661.3333</td>
+</tr>
+<tr class="even">
+<td align="left">14.txt</td>
+<td align="left">I</td>
+<td align="right">721.6404</td>
+</tr>
+<tr class="odd">
+<td align="left">15.txt</td>
+<td align="left">C</td>
+<td align="right">631.8632</td>
+</tr>
+<tr class="even">
+<td align="left">15.txt</td>
+<td align="left">I</td>
+<td align="right">690.3404</td>
+</tr>
+<tr class="odd">
+<td align="left">16.txt</td>
+<td align="left">C</td>
+<td align="right">571.3696</td>
+</tr>
+<tr class="even">
+<td align="left">16.txt</td>
+<td align="left">I</td>
+<td align="right">582.4624</td>
+</tr>
+<tr class="odd">
+<td align="left">17.txt</td>
+<td align="left">C</td>
+<td align="right">619.6522</td>
+</tr>
+<tr class="even">
+<td align="left">17.txt</td>
+<td align="left">I</td>
+<td align="right">622.4725</td>
+</tr>
+<tr class="odd">
+<td align="left">18.txt</td>
+<td align="left">C</td>
+<td align="right">802.3542</td>
+</tr>
+<tr class="even">
+<td align="left">18.txt</td>
+<td align="left">I</td>
+<td align="right">810.5652</td>
+</tr>
+<tr class="odd">
+<td align="left">19.txt</td>
+<td align="left">C</td>
+<td align="right">984.2473</td>
+</tr>
+<tr class="even">
+<td align="left">19.txt</td>
+<td align="left">I</td>
+<td align="right">1043.4835</td>
+</tr>
+<tr class="odd">
+<td align="left">2.txt</td>
+<td align="left">C</td>
+<td align="right">919.4239</td>
+</tr>
+<tr class="even">
+<td align="left">2.txt</td>
+<td align="left">I</td>
+<td align="right">952.9888</td>
+</tr>
+<tr class="odd">
+<td align="left">20.txt</td>
+<td align="left">C</td>
+<td align="right">671.8526</td>
+</tr>
+<tr class="even">
+<td align="left">20.txt</td>
+<td align="left">I</td>
+<td align="right">690.9688</td>
+</tr>
+<tr class="odd">
+<td align="left">21.txt</td>
+<td align="left">C</td>
+<td align="right">840.6667</td>
+</tr>
+<tr class="even">
+<td align="left">21.txt</td>
+<td align="left">I</td>
+<td align="right">884.1368</td>
+</tr>
+<tr class="odd">
+<td align="left">22.txt</td>
+<td align="left">C</td>
+<td align="right">747.8152</td>
+</tr>
+<tr class="even">
+<td align="left">22.txt</td>
+<td align="left">I</td>
+<td align="right">746.1429</td>
+</tr>
+<tr class="odd">
+<td align="left">3.txt</td>
+<td align="left">C</td>
+<td align="right">811.7158</td>
+</tr>
+<tr class="even">
+<td align="left">3.txt</td>
+<td align="left">I</td>
+<td align="right">809.1505</td>
+</tr>
+<tr class="odd">
+<td align="left">4.txt</td>
+<td align="left">C</td>
+<td align="right">815.3368</td>
+</tr>
+<tr class="even">
+<td align="left">4.txt</td>
+<td align="left">I</td>
+<td align="right">844.4222</td>
+</tr>
+<tr class="odd">
+<td align="left">5.txt</td>
+<td align="left">C</td>
+<td align="right">784.5543</td>
+</tr>
+<tr class="even">
+<td align="left">5.txt</td>
+<td align="left">I</td>
+<td align="right">882.9333</td>
+</tr>
+<tr class="odd">
+<td align="left">6.txt</td>
+<td align="left">C</td>
+<td align="right">667.9032</td>
+</tr>
+<tr class="even">
+<td align="left">6.txt</td>
+<td align="left">I</td>
+<td align="right">691.1398</td>
+</tr>
+<tr class="odd">
+<td align="left">7.txt</td>
+<td align="left">C</td>
+<td align="right">1024.3298</td>
+</tr>
+<tr class="even">
+<td align="left">7.txt</td>
+<td align="left">I</td>
+<td align="right">1076.9032</td>
+</tr>
+<tr class="odd">
+<td align="left">8.txt</td>
+<td align="left">C</td>
+<td align="right">601.3976</td>
+</tr>
+<tr class="even">
+<td align="left">8.txt</td>
+<td align="left">I</td>
+<td align="right">633.9368</td>
+</tr>
+<tr class="odd">
+<td align="left">9.txt</td>
+<td align="left">C</td>
+<td align="right">695.3763</td>
+</tr>
+<tr class="even">
+<td align="left">9.txt</td>
+<td align="left">I</td>
+<td align="right">779.8261</td>
+</tr>
+</tbody>
+</table>
 <ol start="2" style="list-style-type: decimal">
 <li>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</li>
 </ol>
 <pre class="r"><code>overall_means &lt;- subject_meanRTs %&gt;%
                         group_by(congruency) %&gt;%
-                        summarise(meanRT = mean(correct_resp),
+                        summarise(meanRt = mean(meanRt),
                                   SEM = (sd(correct_resp)/sqrt(length(correct_resp))))
   
     knitr::kable(overall_means)</code></pre>
@@ -755,19 +987,19 @@ all_data &lt;- all_data %&gt;%
 <thead>
 <tr class="header">
 <th align="left">congruency</th>
-<th align="right">meanRT</th>
+<th align="right">meanRt</th>
 <th align="right">SEM</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">C</td>
-<td align="right">0.9415246</td>
+<td align="right">734.7581</td>
 <td align="right">0.0036107</td>
 </tr>
 <tr class="even">
 <td align="left">I</td>
-<td align="right">0.9415246</td>
+<td align="right">774.1644</td>
 <td align="right">0.0036107</td>
 </tr>
 </tbody>
