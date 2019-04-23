@@ -155,12 +155,38 @@ overall_means <- subject_meanRTs %>%
   
 ```
 
+
+
+
 3. Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect
 
 **tip:** Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.
 
 ```{r}
+library(dplyr)
+library(data.table)
+library(ggplot2)
+Rtime_cong <- subject_meanRTs %>%
+                     filter(congruency == 'C') %>%
+                     group_by(subject)
 
+    Rtime_incong <- subject_meanRTs %>%
+                       filter(congruency == 'I') %>%
+                       group_by(subject)
+    
+    
+    SEMRtime_allsubj = sd(Rtime_incong$corr_RT - Rtime_cong$corr_RT)/sqrt(length(Rtime_cong$corr_RT))
+    
+    avgRtime = mean(abs(Rtime_incong$corr_RT - Rtime_cong$corr_RT))
+    
+    flankerdata <- data.table(avgRtime, SEMRtime_allsubj)
+    
+                                
+    ggplot(flankerdata, aes(x="all_subj", y=avgRtime))+
+        geom_bar(stat="identity")+
+        ylab("Mean Flanker Effect")+
+        geom_errorbar(aes(ymin=avgRtime-SEMRtime_allsubj,
+                          ymax=avgRtime+SEMRtime_allsubj))
   
 ```
 
