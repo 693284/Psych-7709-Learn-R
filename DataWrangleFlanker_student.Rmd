@@ -182,7 +182,7 @@ Rtime_cong <- subject_meanRTs %>%
     flankerdata <- data.table(avgRtime, SEMRtime_allsubj)
     
                                 
-    ggplot(flankerdata, aes(x="all_subj", y=avgRtime))+
+    ggplot(flankerdata, aes(x="all_subjects", y=avgRtime))+
         geom_bar(stat="identity")+
         ylab("Mean Flanker Effect")+
         geom_errorbar(aes(ymin=avgRtime-SEMRtime_allsubj,
@@ -209,7 +209,31 @@ First get teh subject means for each condition, then create a table and plot for
 **tip:** be careful, note that the first trial in each experiment can not be included, because it had no preceding trial
 
 ```{r}
+prev_trial = c()
 
+for (i in 2:length(restricted$subject)) {
+  if (restricted$subject[i]==restricted$subject[i-1]) {
+    prev_trial[i] = restricted$congruency[i-1]
+  }
+  else {
+    prev_trial[i] = 0
+  }
+}
+
+prev_analysis <- restricted %>%
+    #adds n-1 trials column to all RT < 2000
+  mutate(prev_trial = prev_trial) %>%
+    #keeps n-1 cong/incrog trials with correct responses 
+  filter(prev_trial != 0, correct_resp == 1) %>%
+  group_by(subject,congruency,prev_trial) %>%
+  summarise(mean_reaction = mean(reaction_time))
+
+new_analysis <- prev_analysis %>%
+  group_by(congruency,prev_trial) %>%
+  summarise(mean_react = mean(mean_reaction),
+            standard_error = sd(mean_reaction)/(sqrt(length(mean_reaction))))
+
+knitr::kable(new_analysis)
 
 ```
 

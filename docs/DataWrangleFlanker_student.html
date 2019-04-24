@@ -1027,7 +1027,7 @@ Rtime_cong &lt;- subject_meanRTs %&gt;%
     flankerdata &lt;- data.table(avgRtime, SEMRtime_allsubj)
     
                                 
-    ggplot(flankerdata, aes(x=&quot;all_subj&quot;, y=avgRtime))+
+    ggplot(flankerdata, aes(x=&quot;all_subjects&quot;, y=avgRtime))+
         geom_bar(stat=&quot;identity&quot;)+
         ylab(&quot;Mean Flanker Effect&quot;)+
         geom_errorbar(aes(ymin=avgRtime-SEMRtime_allsubj,
@@ -1047,6 +1047,67 @@ Rtime_cong &lt;- subject_meanRTs %&gt;%
 <li>trial n incongruent : trial n-1 incongruent</li>
 </ol>
 <p>**<a href="tip:**" class="uri">tip:**</a> be careful, note that the first trial in each experiment can not be included, because it had no preceding trial</p>
+<pre class="r"><code>prev_trial = c()
+
+for (i in 2:length(restricted$subject)) {
+  if (restricted$subject[i]==restricted$subject[i-1]) {
+    prev_trial[i] = restricted$congruency[i-1]
+  }
+  else {
+    prev_trial[i] = 0
+  }
+}
+
+prev_analysis &lt;- restricted %&gt;%
+    #adds n-1 trials column to all RT &lt; 2000
+  mutate(prev_trial = prev_trial) %&gt;%
+    #keeps n-1 cong/incrog trials with correct responses 
+  filter(prev_trial != 0, correct_resp == 1) %&gt;%
+  group_by(subject,congruency,prev_trial) %&gt;%
+  summarise(mean_reaction = mean(reaction_time))
+
+new_analysis &lt;- prev_analysis %&gt;%
+  group_by(congruency,prev_trial) %&gt;%
+  summarise(mean_react = mean(mean_reaction),
+            standard_error = sd(mean_reaction)/(sqrt(length(mean_reaction))))
+
+knitr::kable(new_analysis)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">congruency</th>
+<th align="left">prev_trial</th>
+<th align="right">mean_react</th>
+<th align="right">standard_error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="right">713.3460</td>
+<td align="right">29.27478</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">I</td>
+<td align="right">753.8704</td>
+<td align="right">31.18765</td>
+</tr>
+<tr class="odd">
+<td align="left">I</td>
+<td align="left">C</td>
+<td align="right">794.2973</td>
+<td align="right">33.59446</td>
+</tr>
+<tr class="even">
+<td align="left">I</td>
+<td align="left">I</td>
+<td align="right">748.9065</td>
+<td align="right">32.50908</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
