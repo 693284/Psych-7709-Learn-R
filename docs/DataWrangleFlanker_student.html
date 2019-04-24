@@ -1020,9 +1020,9 @@ Rtime_cong &lt;- subject_meanRTs %&gt;%
                        group_by(subject)
     
     
-    SEMRtime_allsubj = sd(Rtime_incong$corr_RT - Rtime_cong$corr_RT)/sqrt(length(Rtime_cong$corr_RT))
+    SEMRtime_allsubj = sd(Rtime_incong$meanRt - Rtime_cong$meanRt)/sqrt(length(Rtime_cong$meanRt))
     
-    avgRtime = mean(abs(Rtime_incong$corr_RT - Rtime_cong$corr_RT))
+    avgRtime = mean(abs(Rtime_incong$meanRt - Rtime_cong$meanRt))
     
     flankerdata &lt;- data.table(avgRtime, SEMRtime_allsubj)
     
