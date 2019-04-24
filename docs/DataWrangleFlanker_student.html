@@ -1108,6 +1108,16 @@ knitr::kable(new_analysis)</code></pre>
 </tr>
 </tbody>
 </table>
+<pre class="r"><code>ggplot(new_analysis, aes(x=congruency, y=mean_react, fill=prev_trial))+
+        geom_bar(stat=&quot;identity&quot;, width = 1.0, position=position_dodge(width=0.5))+
+        xlab(&quot;n-1 congruency&quot;)+
+        ylab(&quot;Mean Reaction Time&quot;)+
+        geom_errorbar(aes(ymin=mean_react-standard_error,
+                          ymax=mean_react+standard_error),
+                          position=position_dodge(width=0.9),
+                          width=.1,
+                          color=&quot;yellow&quot;)</code></pre>
+<p><img src="DataWrangleFlanker_student_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 </div>
 </div>

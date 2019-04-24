@@ -236,6 +236,19 @@ new_analysis <- prev_analysis %>%
 knitr::kable(new_analysis)
 
 ```
+```{r}
+ggplot(new_analysis, aes(x=congruency, y=mean_react, fill=prev_trial))+
+        geom_bar(stat="identity", width = 1.0, position=position_dodge(width=0.5))+
+        xlab("n-1 congruency")+
+        ylab("Mean Reaction Time")+
+        geom_errorbar(aes(ymin=mean_react-standard_error,
+                          ymax=mean_react+standard_error),
+                          position=position_dodge(width=0.9),
+                          width=.1,
+                          color="yellow")
+
+```
+
 
 
 
