@@ -18,5 +18,7 @@ navbar:
       href: DataWrangleFlanker_student.html
     - text: "Statistics"
       href: Statistics.html
+    - text: "Final Presentation"
+      href: presenation.html
 output_dir: "docs"
 
