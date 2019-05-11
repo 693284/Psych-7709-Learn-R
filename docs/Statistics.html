@@ -13,15 +13,15 @@
 
 <title>Statistics</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<script src="site_libs/navigation/tabsets.js"></script>
+<link href="site_libs/highlightjs/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -69,9 +69,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -190,8 +188,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -265,6 +261,15 @@ $(document).ready(function () {
 
 
 
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
@@ -301,6 +306,9 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="Statistics.html">Statistics</a>
+</li>
+<li>
+  <a href="presenation.html">Final Presentation</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -364,13 +372,13 @@ t.test(testScores,mu=0)</code></pre>
 ##  One Sample t-test
 ## 
 ## data:  testScores
-## t = -0.50296, df = 9, p-value = 0.6271
+## t = 0.071758, df = 9, p-value = 0.9444
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9994128  0.6358388
+##  -0.7848565  0.8362805
 ## sample estimates:
 ## mean of x 
-## -0.181787</code></pre>
+##  0.025712</code></pre>
 <pre class="r"><code>t_dist &lt;-runif(10000)</code></pre>
 </div>
 <div id="t-null-distribution" class="section level1">
@@ -389,7 +397,7 @@ t.test(testScores,mu=0)</code></pre>
 <pre class="r"><code>x &lt;- rnorm(10,0,1)
 y &lt;- rnorm(10,0,1)
 cor(x,y)</code></pre>
-<pre><code>## [1] 0.4236064</code></pre>
+<pre><code>## [1] -0.2177957</code></pre>
 <pre class="r"><code>correlation_dist &lt;- c()
 
     for(i in 1:10000) {
@@ -406,7 +414,7 @@ cor(x,y)</code></pre>
 
     allprobvalues &lt;- which(zd$y &gt;= 0.05) # possible values in this vector
     abs(zd$x[allprobvalues[1]])</code></pre>
-<pre><code>## [1] 0.8110982</code></pre>
+<pre><code>## [1] 0.7849197</code></pre>
 </div>
 </div>
 <div id="f-values-anova" class="section level1">
@@ -502,7 +510,7 @@ library(xtable)</code></pre>
 
     allposs_values &lt;- which(zd$y &gt;= 0.05)
     zd$x[allposs_values[length(allposs_values)]]</code></pre>
-<pre><code>## [1] 1.835938</code></pre>
+<pre><code>## [1] 1.974276</code></pre>
 </div>
 
 
