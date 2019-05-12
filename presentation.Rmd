@@ -153,20 +153,39 @@ omega.diagram)
 ### useful functions for basic data manipulation including read.file, read.clipboard, describe, pairs.panels, error.bars and error.dots) which are useful for basic data entry and descriptive analyses
 
 --
-- When given a set of items from a personality inventory, useful to combine these into higher
-level item composites. This leads to several questions:
 
-- 1) What are the basic properties of the data? describe reports basic summary statistics (mean,
-sd, median, mad, range, minimum, maximum, skew, kurtosis, standard error) for vectors, columns
-of matrices, or data.frames. describeBy provides descriptive statistics, organized by one or more
-grouping variables. statsBy provides even more detail for data structured by groups including
-within and between correlation matrices, ICCs for group differences, as well as basic descriptive
-statistics organized by group
+- When given a set of items from a personality inventory
 
-- pairs.panels shows scatter plot matrices (SPLOMs) as well as histograms and the Pearson correlation for scales or items. error.bars will plot variable means with associated confidence intervals.
-errorCircles will plot confidence intervals for both the x and y coordinates. corr.test will find
-the significance values for a matrix of correlations. error.dots creates a dot chart with confidence
-intervals
+--
+
+- useful to combine these into higher level item composites
+
+--
+
+- What are the basic properties of the data? 
+
+--
+- describe reports basic summary statistics (mean, sd, median, mad, range, minimum, maximum, skew, kurtosis, standard error) 
+
+--
+- for vectors, columns of matrices, or data.frames. describeBy provides descriptive statistics, organized by one or more grouping variables
+
+--
+- statsBy provides even more detail for data structured by groups including
+within and between correlation matrices
+
+--
+- pairs.panels - shows scatter plot matrices (SPLOMs)  
+- histograms and the Pearson correlation for scales or items. error.bars will plot variable means with associated confidence intervals
+
+--
+- errorCircles will plot confidence intervals for both the x and y coordinates
+
+--
+- corr.test will find the significance values for a matrix of correlations
+
+--
+- error.dots creates a dot chart with confidence intervals
 
 ---
 --
@@ -174,12 +193,29 @@ intervals
 
 --
 
-- basic statistics, it is useful to be able to generate examples suitable for analysis of
-variance or simple linear models. sim.anova will generate the design matrix of three independent
+- basic statistics
+
+--
+- it is useful to be able to generate examples suitable for analysis of variance or simple linear models
+
+--
+
+- sim.anova will generate the design matrix of three independent
 variables (IV1, IV2, IV3) with an arbitrary number of levels and effect sizes for each main effect
-and interaction. IVs can be either continuous or categorical and can have linear or quadratic effects.
-Either a single dependent variable or multiple (within subject) dependent variables are generated
-according to the specified model. The repeated measures are assumed to be tau equivalent with a
+and interaction
+
+--
+
+- IVs can be either continuous or categorical and can have linear or quadratic effects
+
+--
+
+- Either a single dependent variable or multiple (within subject) dependent variables are generated
+according to the specified model
+
+--
+
+- The repeated measures are assumed to be tau equivalent with a
 specified reliability
 
 ```{r, eval=FALSE}
