@@ -1,8 +1,9 @@
 ---
-title: "Psych Package"
-subtitle: "some title"
-author: "Yihui Xie"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+title: "Package 'psych'"
+subtitle: "Procedures for Psychological, Psychometric, and Personality
+Research"
+author: "Zoren Degtyarev"
+date: "2019/05/15 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -19,16 +20,193 @@ options(htmltools.dir.version = FALSE)
 ```
 
 
-
-# This slide is about two thinngs
-## First thing
-- bla bla
-
-## second thing
-- more stuff
-
 ---
 
-# another slide
+# Introduction
+--
+
+### A toolbox for personality, psychometric theory and experimental psychology
+
+--
+- Functions are primarily for multivariate analysis and scale construction using factor analysis, principal component analysis, cluster analysis and reliability analysis, although others provide basic descriptive statistics
+
+--
+
+---
+--
+# Introduction
+
+### Functions for analyzing data at multiple levels include within and between group statistics, including correlations and factor analysis
+--
+
+- Several functions serve as a useful front end for structural equation modeling
+
+--
+
+- Graphical displays of path diagrams, factor analysis and structural equation models are created using basic graphics
+--
+
+- Some of the functions are written to support a book on psychometric theory as well as publications in personality research
+
+---
+--
+# Overview of the psych package
+--
+
+###  Developed at Northwestern University to include functions most useful for personality and psychological research
+
+--
+
+- Some of the functions (e.g., read.file, read.clipboard, describe, pairs.panels, error.bars and error.dots) are helpful for basic data entry and descriptive analyses
+
+--
+- Use help(package="psych") or objects("package:psych") for a list of all functions Three vignettes are included as part of the package. The intro vignette tells how to install psych and overview vignette provides examples of using psych in many applications. 
+
+--
+- Additionally, there are sets of tutorials available on the https://personality-project.org/r webpages.
+
+---
+--
+
+# Overview of the psych package.
+--
+
+### Psychometric applications
+
+--
+
+- Schmid Leiman transformations (schmid) to transform a hierarchical factor structure into a bifactor solution
+
+--
+
+- Functions for determining the number of factors in a data matrix include Very Simple Structure (VSS) and Minimum Average Partial correlation (MAP)
+
+
+### An alternative approach to factor analysis is Item Cluster Analysis (ICLUST)
+
+--
+
+- Reliability coefficients alpha (scoreItems, score.multiple.choice), beta (ICLUST) and McDonald’s omega (omega and
+omega.diagram)
+
+--
+
+### Multilevel analyses 
+
+--
+
+- may be done by statsBy and multilevel.reliability
+
+---
+--
+### The scoreItems, and score.multiple.choice functions 
+
+--
+
+- Used to form single or multiple scales from sets of dichotomous, multilevel, or multiple choice items by specifying scoring keys
+
+--
+
+### Functions to apply various standard statistical tests 
+
+--
+
+- include p.rep and its variants for testing the probability of replication, r.con for the confidence intervals of a correlation, and r.test to test single, paired, or sets of correlations
+
+--
+
+### Studying diurnal or circadian variations in mood
+
+--
+
+- Helpful to use circular statistics 
+- Functions to find the circular mean (circadian.mean)
+- circular (phasic) correlations (circadian.cor) and the correlation between linear variables and circular variables (circadian.linear.cor) 
+- This supplements a function to find the best fitting phase angle (cosinor) for measures taken with a fixed period (e.g., 24 hours)
+
+---
+--
+
+# Functions continued
+
+--
+
+### Functions to generate simulated data with particular structures
+
+--
+- Include sim.circ (for circumplex structures)
+
+--
+- sim.item (for general structures) and sim.congeneric (for a specific demonstration of congeneric measurement) 
+
+--
+- The functions sim.congeneric and sim.hierarchical - used to create data sets with particular structural properties
+
+--
+- A more general form for all of these is sim.structural for generating general structural models
+
+--
+- More detail in the vignette (psych_for_sem)
+
+---
+--
+### there are a number of very useful functions for basic data manipulation including read.file, read.clipboard, describe, pairs.panels, error.bars and error.dots) which are useful for basic data entry and descriptive analyses
+
+--
+- When given a set of items from a personality inventory, one goal is to combine these into higher
+level item composites. This leads to several questions:
+- 1) What are the basic properties of the data? describe reports basic summary statistics (mean,
+sd, median, mad, range, minimum, maximum, skew, kurtosis, standard error) for vectors, columns
+of matrices, or data.frames. describeBy provides descriptive statistics, organized by one or more
+grouping variables. statsBy provides even more detail for data structured by groups including
+within and between correlation matrices, ICCs for group differences, as well as basic descriptive
+statistics organized by group
+
+- pairs.panels shows scatter plot matrices (SPLOMs) as well as histograms and the Pearson correlation for scales or items. error.bars will plot variable means with associated confidence intervals.
+errorCircles will plot confidence intervals for both the x and y coordinates. corr.test will find
+the significance values for a matrix of correlations. error.dots creates a dot chart with confidence
+intervals
+
+---
+--
+### Functions to generate simulated data
+
+--
+
+- basic statistics, it is useful to be able to generate examples suitable for analysis of
+variance or simple linear models. sim.anova will generate the design matrix of three independent
+variables (IV1, IV2, IV3) with an arbitrary number of levels and effect sizes for each main effect
+and interaction. IVs can be either continuous or categorical and can have linear or quadratic effects.
+Either a single dependent variable or multiple (within subject) dependent variables are generated
+according to the specified model. The repeated measures are assumed to be tau equivalent with a
+specified reliability
+
+```{r, eval=FALSE}
+set.seed(42)
+data.df <- sim.anova(es1=1,es2=.5,es13=1) # one main effect and one interaction
+describe(data.df)
+pairs.panels(data.df) #show how the design variables are orthogonal
+#
+summary(lm(DV~IV1*IV2*IV3,data=data.df))
+summary(aov(DV~IV1*IV2*IV3,data=data.df))
+set.seed(42)
+#demonstrate the effect of not centering the data on the regression
+data.df <- sim.anova(es1=1,es2=.5,es13=1,center=FALSE) #
+describe(data.df)
+#
+#this one is incorrect, because the IVs are not centered
+summary(lm(DV~IV1*IV2*IV3,data=data.df))
+summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
+#now examine multiple levels and quadratic terms
+set.seed(42)
+data.df <- sim.anova(es1=1,es13=1,n2=3,n3=4,es22=1)
+summary(lm(DV~IV1*IV2*IV3,data=data.df))
+summary(aov(DV~IV1*IV2*IV3,data=data.df))
+pairs.panels(data.df)
+#
+data.df <- sim.anova(es1=1,es2=-.5,within=c(-1,0,1),n=10)
+pairs.panels(data.df)
+
+```
 
 
