@@ -257,15 +257,22 @@ describe(data.df)
 ## IV3* 0.13
 ## DV   0.46
 ```
+---
+--
 
 ```r
 pairs.panels(data.df) #show how the design variables are orthogonal
 ```
 
-![](presentation_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+![](presentation_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 
 ```r
 #
+```
+
+---
+
+```r
 summary(lm(DV~IV1*IV2*IV3,data=data.df))
 ```
 
@@ -316,10 +323,10 @@ summary(aov(DV~IV1*IV2*IV3,data=data.df))
 
 ```r
 set.seed(42)
-#demonstrate the effect of not centering the data on the regression
-data.df &lt;- sim.anova(es1=1,es2=.5,es13=1,center=FALSE) #
-describe(data.df)
 ```
+
+---
+
 
 ```
 ##      vars  n mean   sd median trimmed  mad   min  max range  skew kurtosis
@@ -332,12 +339,6 @@ describe(data.df)
 ## IV2* 0.13
 ## IV3* 0.13
 ## DV   0.46
-```
-
-```r
-#
-#this one is incorrect, because the IVs are not centered
-summary(lm(DV~IV1*IV2*IV3,data=data.df))
 ```
 
 ```
@@ -367,10 +368,6 @@ summary(lm(DV~IV1*IV2*IV3,data=data.df))
 ## F-statistic: 9.764 on 7 and 8 DF,  p-value: 0.002274
 ```
 
-```r
-summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
-```
-
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## IV1          1  9.749   9.749  14.473 0.005204 ** 
@@ -385,12 +382,7 @@ summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-```r
-#now examine multiple levels and quadratic terms
-set.seed(42)
-data.df &lt;- sim.anova(es1=1,es13=1,n2=3,n3=4,es22=1)
-summary(lm(DV~IV1*IV2*IV3,data=data.df))
-```
+---
 
 ```
 ## 
@@ -435,10 +427,6 @@ summary(lm(DV~IV1*IV2*IV3,data=data.df))
 ## F-statistic: 6.693 on 23 and 24 DF,  p-value: 8.495e-06
 ```
 
-```r
-summary(aov(DV~IV1*IV2*IV3,data=data.df))
-```
-
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## IV1          1  36.11   36.11  29.346 1.45e-05 ***
@@ -453,19 +441,7 @@ summary(aov(DV~IV1*IV2*IV3,data=data.df))
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-```r
-pairs.panels(data.df)
-```
-
-![](presentation_files/figure-html/unnamed-chunk-1-2.png)&lt;!-- --&gt;
-
-```r
-#
-data.df &lt;- sim.anova(es1=1,es2=-.5,within=c(-1,0,1),n=10)
-pairs.panels(data.df)
-```
-
-![](presentation_files/figure-html/unnamed-chunk-1-3.png)&lt;!-- --&gt;
+![](presentation_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;![](presentation_files/figure-html/unnamed-chunk-5-2.png)&lt;!-- --&gt;
 
 
 ```r

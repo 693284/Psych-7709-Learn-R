@@ -232,11 +232,24 @@ library(psych)
 set.seed(42)
 data.df <- psych::sim.anova(es1=1,es2=.5,es13=1) # one main effect and one interaction
 describe(data.df)
+```
+---
+--
+```{r}
 pairs.panels(data.df) #show how the design variables are orthogonal
 #
+```
+
+---
+```{r}
 summary(lm(DV~IV1*IV2*IV3,data=data.df))
 summary(aov(DV~IV1*IV2*IV3,data=data.df))
 set.seed(42)
+```
+
+---
+
+```{r, echo=FALSE}
 #demonstrate the effect of not centering the data on the regression
 data.df <- sim.anova(es1=1,es2=.5,es13=1,center=FALSE) #
 describe(data.df)
@@ -246,6 +259,10 @@ summary(lm(DV~IV1*IV2*IV3,data=data.df))
 summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
 #now examine multiple levels and quadratic terms
 set.seed(42)
+```
+
+---
+```{r, echo=FALSE}
 data.df <- sim.anova(es1=1,es13=1,n2=3,n3=4,es22=1)
 summary(lm(DV~IV1*IV2*IV3,data=data.df))
 summary(aov(DV~IV1*IV2*IV3,data=data.df))
