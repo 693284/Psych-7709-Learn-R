@@ -14,12 +14,13 @@ class: center, middle, inverse, title-slide
 # Package ‘psych’
 ## Procedures for Psychological, Psychometric, and Personality Research
 ### Zoren Degtyarev
-### 2019/05/15 (updated: 2019-05-12)
+### 2019/05/15 (updated: 2019-05-13)
 
 ---
 
 
-background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+
+
 
 
 
@@ -73,6 +74,10 @@ background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharin
 --
 
 # Overview of the psych package.
+
+--
+- To load up use library (psych)
+
 --
 
 ### Psychometric applications
@@ -222,33 +227,277 @@ according to the specified model
 - The repeated measures are assumed to be tau equivalent with a
 specified reliability
 
+---
+--
+
+
+```r
+library(psych)
+```
+
+```
+## Warning: package 'psych' was built under R version 3.5.3
+```
 
 ```r
 set.seed(42)
-data.df &lt;- sim.anova(es1=1,es2=.5,es13=1) # one main effect and one interaction
+data.df &lt;- psych::sim.anova(es1=1,es2=.5,es13=1) # one main effect and one interaction
 describe(data.df)
+```
+
+```
+##      vars  n mean   sd median trimmed  mad   min  max range  skew kurtosis
+## IV1*    1 16 1.50 0.52    1.5    1.50 0.74  1.00 2.00   1.0  0.00    -2.12
+## IV2*    2 16 1.50 0.52    1.5    1.50 0.74  1.00 2.00   1.0  0.00    -2.12
+## IV3*    3 16 1.50 0.52    1.5    1.50 0.74  1.00 2.00   1.0  0.00    -2.12
+## DV      4 16 0.49 1.85    1.0    0.62 1.63 -3.78 3.03   6.8 -0.67    -0.45
+##        se
+## IV1* 0.13
+## IV2* 0.13
+## IV3* 0.13
+## DV   0.46
+```
+
+```r
 pairs.panels(data.df) #show how the design variables are orthogonal
+```
+
+![](presentation_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+```r
 #
 summary(lm(DV~IV1*IV2*IV3,data=data.df))
+```
+
+```
+## 
+## Call:
+## lm(formula = DV ~ IV1 * IV2 * IV3, data = data.df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.8966 -0.3917  0.0000  0.3917  0.8966 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      1.1798     0.5803   2.033 0.076503 .  
+## IV11            -1.9469     0.8207  -2.372 0.045093 *  
+## IV21             0.1076     0.8207   0.131 0.898974    
+## IV31            -4.0620     0.8207  -4.949 0.001122 ** 
+## IV11:IV21        2.6342     1.1607   2.269 0.052933 .  
+## IV11:IV31        6.0582     1.1607   5.220 0.000803 ***
+## IV21:IV31        2.0421     1.1607   1.759 0.116556    
+## IV11:IV21:IV31  -3.3524     1.6415  -2.042 0.075397 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.8207 on 8 degrees of freedom
+## Multiple R-squared:  0.8952,	Adjusted R-squared:  0.8035 
+## F-statistic: 9.764 on 7 and 8 DF,  p-value: 0.002274
+```
+
+```r
 summary(aov(DV~IV1*IV2*IV3,data=data.df))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## IV1          1  9.749   9.749  14.473 0.005204 ** 
+## IV2          1 10.337  10.337  15.346 0.004435 ** 
+## IV3          1  2.890   2.890   4.290 0.072097 .  
+## IV1:IV2      1  0.918   0.918   1.362 0.276751    
+## IV1:IV3      1 19.202  19.202  28.507 0.000695 ***
+## IV2:IV3      1  0.134   0.134   0.199 0.667572    
+## IV1:IV2:IV3  1  2.810   2.810   4.171 0.075397 .  
+## Residuals    8  5.389   0.674                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+```r
 set.seed(42)
 #demonstrate the effect of not centering the data on the regression
 data.df &lt;- sim.anova(es1=1,es2=.5,es13=1,center=FALSE) #
 describe(data.df)
+```
+
+```
+##      vars  n mean   sd median trimmed  mad   min  max range  skew kurtosis
+## IV1*    1 16 1.50 0.52    1.5    1.50 0.74  1.00 2.00   1.0  0.00    -2.12
+## IV2*    2 16 1.50 0.52    1.5    1.50 0.74  1.00 2.00   1.0  0.00    -2.12
+## IV3*    3 16 1.50 0.52    1.5    1.50 0.74  1.00 2.00   1.0  0.00    -2.12
+## DV      4 16 0.49 1.85    1.0    0.62 1.63 -3.78 3.03   6.8 -0.67    -0.45
+##        se
+## IV1* 0.13
+## IV2* 0.13
+## IV3* 0.13
+## DV   0.46
+```
+
+```r
 #
 #this one is incorrect, because the IVs are not centered
 summary(lm(DV~IV1*IV2*IV3,data=data.df))
+```
+
+```
+## 
+## Call:
+## lm(formula = DV ~ IV1 * IV2 * IV3, data = data.df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.8966 -0.3917  0.0000  0.3917  0.8966 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      1.1798     0.5803   2.033 0.076503 .  
+## IV11            -1.9469     0.8207  -2.372 0.045093 *  
+## IV21             0.1076     0.8207   0.131 0.898974    
+## IV31            -4.0620     0.8207  -4.949 0.001122 ** 
+## IV11:IV21        2.6342     1.1607   2.269 0.052933 .  
+## IV11:IV31        6.0582     1.1607   5.220 0.000803 ***
+## IV21:IV31        2.0421     1.1607   1.759 0.116556    
+## IV11:IV21:IV31  -3.3524     1.6415  -2.042 0.075397 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.8207 on 8 degrees of freedom
+## Multiple R-squared:  0.8952,	Adjusted R-squared:  0.8035 
+## F-statistic: 9.764 on 7 and 8 DF,  p-value: 0.002274
+```
+
+```r
 summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## IV1          1  9.749   9.749  14.473 0.005204 ** 
+## IV2          1 10.337  10.337  15.346 0.004435 ** 
+## IV3          1  2.890   2.890   4.290 0.072097 .  
+## IV1:IV2      1  0.918   0.918   1.362 0.276751    
+## IV1:IV3      1 19.202  19.202  28.507 0.000695 ***
+## IV2:IV3      1  0.134   0.134   0.199 0.667572    
+## IV1:IV2:IV3  1  2.810   2.810   4.171 0.075397 .  
+## Residuals    8  5.389   0.674                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+```r
 #now examine multiple levels and quadratic terms
 set.seed(42)
 data.df &lt;- sim.anova(es1=1,es13=1,n2=3,n3=4,es22=1)
 summary(lm(DV~IV1*IV2*IV3,data=data.df))
+```
+
+```
+## 
+## Call:
+## lm(formula = DV ~ IV1 * IV2 * IV3, data = data.df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.0018 -0.3397  0.0000  0.3397  2.0018 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       3.4260     0.7844   4.367 0.000207 ***
+## IV11             -2.7790     1.1093  -2.505 0.019434 *  
+## IV20             -3.0489     1.1093  -2.748 0.011190 *  
+## IV21             -1.2009     1.1093  -1.083 0.289778    
+## IV3-1            -1.5254     1.1093  -1.375 0.181825    
+## IV31             -4.4713     1.1093  -4.031 0.000488 ***
+## IV33             -5.1016     1.1093  -4.599 0.000115 ***
+## IV11:IV20         1.5126     1.5689   0.964 0.344596    
+## IV11:IV21         1.3254     1.5689   0.845 0.406549    
+## IV11:IV3-1        3.2038     1.5689   2.042 0.052272 .  
+## IV11:IV31         6.1556     1.5689   3.924 0.000639 ***
+## IV11:IV33         8.5233     1.5689   5.433  1.4e-05 ***
+## IV20:IV3-1        2.1234     1.5689   1.353 0.188512    
+## IV21:IV3-1        1.1223     1.5689   0.715 0.481280    
+## IV20:IV31         1.3930     1.5689   0.888 0.383389    
+## IV21:IV31         2.2484     1.5689   1.433 0.164711    
+## IV20:IV33         1.5838     1.5689   1.010 0.322782    
+## IV21:IV33         1.5504     1.5689   0.988 0.332899    
+## IV11:IV20:IV3-1  -2.6968     2.2187  -1.215 0.236008    
+## IV11:IV21:IV3-1  -1.2671     2.2187  -0.571 0.573237    
+## IV11:IV20:IV31   -0.4246     2.2187  -0.191 0.849846    
+## IV11:IV21:IV31   -3.3169     2.2187  -1.495 0.147959    
+## IV11:IV20:IV33   -2.4872     2.2187  -1.121 0.273368    
+## IV11:IV21:IV33   -0.6422     2.2187  -0.289 0.774713    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.109 on 24 degrees of freedom
+## Multiple R-squared:  0.8651,	Adjusted R-squared:  0.7359 
+## F-statistic: 6.693 on 23 and 24 DF,  p-value: 8.495e-06
+```
+
+```r
 summary(aov(DV~IV1*IV2*IV3,data=data.df))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## IV1          1  36.11   36.11  29.346 1.45e-05 ***
+## IV2          2  32.23   16.12  13.096 0.000143 ***
+## IV3          3  10.76    3.59   2.914 0.054955 .  
+## IV1:IV2      2   0.03    0.01   0.011 0.988728    
+## IV1:IV3      3  98.02   32.67  26.549 8.49e-08 ***
+## IV2:IV3      6   3.71    0.62   0.502 0.800543    
+## IV1:IV2:IV3  6   8.58    1.43   1.162 0.358682    
+## Residuals   24  29.54    1.23                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+```r
 pairs.panels(data.df)
+```
+
+![](presentation_files/figure-html/unnamed-chunk-1-2.png)&lt;!-- --&gt;
+
+```r
 #
 data.df &lt;- sim.anova(es1=1,es2=-.5,within=c(-1,0,1),n=10)
 pairs.panels(data.df)
 ```
+
+![](presentation_files/figure-html/unnamed-chunk-1-3.png)&lt;!-- --&gt;
+
+
+```r
+print(data.df$IV1)
+```
+
+```
+##  [1] -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1
+## [24] 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1 
+## [47] -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1 1  -1
+## [70] 1  -1 1  -1 1  -1 1  -1 1  -1 1 
+## Levels: -1 1
+```
+
+---
+--
+
+### References
+
+--
+J. Cohen (1982) Set correlation as a general multivariate data-analytic method. Multivariate Behavioral Research, 17(3):301-341.
+
+J. Cohen, P. Cohen, S.G. West, and L.S. Aiken. (2003) Applied multiple regression/correlation
+analysis for the behavioral sciences. L. Erlbaum Associates, Mahwah, N.J., 3rd ed edition.
+
+H. Hotelling. (1936) Relations between two sets of variates. Biometrika 28(3/4):321-377.
+E.Cramer and W. A. Nicewander (1979) Some symmetric, invariant measures of multivariate association. Psychometrika, 44:43-54.
+
+V. D. R. Guide Jr. and M. Ketokivim (2015) Notes from the Editors: Redefining some methodological criteria for the journal. Journal of Operations Management. 37. v-viii
+
+---
+### Thank You!
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
