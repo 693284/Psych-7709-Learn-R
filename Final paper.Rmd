@@ -200,7 +200,15 @@ pairs.panels(data.df)
 data.df <- sim.anova(es1=1,es2=-.5,within=c(-1,0,1),n=10) pairs.panels(data.df)
 
 ```
+## Citations
 
+J. Cohen (1982) Set correlation as a general multivariate data-analytic method. Multivariate Behavioral Research, 17(3):301-341.
+
+J. Cohen, P. Cohen, S.G. West, and L.S. Aiken. (2003) Applied multiple regression/correlation analysis for the behavioral sciences. L. Erlbaum Associates, Mahwah, N.J., 3rd ed edition.
+
+H. Hotelling. (1936) Relations between two sets of variates. Biometrika 28(3/4):321-377. E.Cramer and W. A. Nicewander (1979) Some symmetric, invariant measures of multivariate association. Psychometrika, 44:43-54.
+
+V. D. R. Guide Jr. and M. Ketokivim (2015) Notes from the Editors: Redefining some methodological criteria for the journal. Journal of Operations Management. 37. v-viii
 
 
 
