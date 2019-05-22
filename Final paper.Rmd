@@ -210,6 +210,49 @@ H. Hotelling. (1936) Relations between two sets of variates. Biometrika 28(3/4):
 
 V. D. R. Guide Jr. and M. Ketokivim (2015) Notes from the Editors: Redefining some methodological criteria for the journal. Journal of Operations Management. 37. v-viii
 
+```{r}
+library(psych)
+sim.anova(es1 = 0, n = 2,n1 = 2, 
+    within=NULL,factors=TRUE,center = TRUE,std=TRUE)
+```
+
+
+```{r}
+sim.anova(es1 = 0, es2 = 0, es3 = 0, es12 = 0, es13 = 0,
+    es23 = 0, es123 = 0, es11=0,es22=0, es33=0,n = 2,n1 = 2, n2 = 2, n3 = 2, 
+    within=NULL,r=.8,factors=TRUE,center = TRUE,std=TRUE)
+```
+
+
+```{r}
+data.df <- sim.anova(es1=1)  # one main effect and one interaction
+describe(data.df)
+pairs.panels(data.df)
+```
+
+```{r}
+data.df <- sim.anova(es1=1, es2 = .5, es13 = 1)  # one main effect and one interaction
+describe(data.df)
+pairs.panels(data.df)
+```
+
+```{r}
+data.df <- sim.anova(es1=1, es2 = .5, es123 = 1)  # one main effect and one interaction
+describe(data.df)
+pairs.panels(data.df)
+```
+
+```{r}
+data.df <- sim.anova(es1=1, es2 = .5, es123 = 1, n=5, n1=2, n2=2, n3=2)  # one main effect and one interaction
+describe(data.df)
+pairs.panels(data.df)
+```
+
+```{r}
+data.df <- sim.anova(es1=1, es2 = .5, es123 = 1, n=5, n1=2, n2=2, n3=2)  # one main effect and one interaction
+describe(data.df)
+pairs.panels(data.df)
+```
 
 
 
