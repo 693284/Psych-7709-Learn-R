@@ -234,7 +234,23 @@ pairs.panels(data.df)
 data.df <- sim.anova(es1=1, es2 = .5, es13 = 1)  # one main effect and one interaction
 describe(data.df)
 pairs.panels(data.df)
+summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
+
 ```
+
+```{r}
+data.df <- sim.anova(es1=1, es2 = .5, es13 = 1)  # one main effect and one interaction
+describe(data.df)
+pairs.panels(data.df)
+summary(lm(DV~IV1*IV2*IV3,data=data.df))
+
+summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
+
+```
+
+
+
+
 
 ```{r}
 data.df <- sim.anova(es1=1, es2 = .5, es123 = 1)  # one main effect and one interaction
@@ -248,11 +264,20 @@ describe(data.df)
 pairs.panels(data.df)
 ```
 
+
+
 ```{r}
-data.df <- sim.anova(es1=1, es2 = .5, es123 = 1, n=5, n1=2, n2=2, n3=2)  # one main effect and one interaction
+data.df <- sim.anova(es1=1, es2 = .5, es123 = 1, within=c(-1,0,1),n=10) # one main effect and one interaction
 describe(data.df)
 pairs.panels(data.df)
+
 ```
 
+```{r}
+summary(aov(DV~IV1*IV2*IV3,data=data.df))
+
+summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
+
+```
 
 
