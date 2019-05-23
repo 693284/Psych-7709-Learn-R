@@ -5,24 +5,11 @@
 
 ## Introduction
 
-Package “psych” is considered an all-purpose toolbox, used for psychometric theory experimental psychology and study of 
-personality theory. Several of the “psych” functions are provided to support a book on psychometric theory as well as 
+A sim.anova is a simulation function that falls under an all incompasing package called "psych." The sim.anova function enables one to 
 
-publications in personality research. “psych” package includes a multitude of functions. The package is predominantly 
 
-used for multivariate analysis and scale construction utilizing factor analysis, principle component analysis, cluster 
 
-analysis and reliability analysis. The package also run basic descriptive statistics. It also contains statistics for 
-
-between as well as within group statistics and can analyze the data at multiple levels, including factor analysis and 
-
-correlations. One of many useful functions included in the package is a function for simulating and testing particular 
-
-item and test structures. Several functions serve as a useful front end for structural equation modeling. The package 
-
-also includes graphical displays of path diagrams, factor analysis and structural equation models are created using 
-
-basic graphics. For more information, see the <https://personalityproject.org/r> web page
+ For more information, see the <https://personalityproject.org/r> web page
 
 ## Functions for generating simulated data
 
@@ -225,7 +212,7 @@ sim.anova(es1 = 0, es2 = 0, es3 = 0, es12 = 0, es13 = 0,
 
 
 ```{r}
-data.df <- sim.anova(es1=1)  # one main effect and one interaction
+data.df <- sim.anova(es1=8, es2 = 10, es12 = 5, n1=2, n2=2)  # one main effect and one interaction
 describe(data.df)
 pairs.panels(data.df)
 ```
