@@ -96,7 +96,17 @@ means_variable <- describe(data.df)[,3]
 
 The example above created our new variable with the independent variable means as well as dependent variable mean, and is stored in the 'Global Environment
 
+In the next step we are ready to graph the means using the ggplot2 function. The first step is to install the ggplot2 package. This can be accomplished by either installing the ggplot2 in the "Packages" tab on your right or by using install.packages("ggplot2") function. Installing the ggplot2 can also be done by using the function install.packages("tidyverse"), both functions will install the package for you.
 
+As seen in the example below your line of code should always start with library(ggplot2)
+
+The next step is to encode your vactor as a factor,in the example below, it is c("IV1","IV2","IV3","DV"), followed by putting this factor into a new function, in the example below called "variables". 
+
+Next, a new variable "Means" has to be created. This function will hold the means that were isolated earlier in the data frame and put in the function "means_variable" 
+
+Finally the variable plot_df is created in order to hold your data frame with IV's and DV: "data.frame"
+
+Now we are ready to plot the basic bar graph by using ggplot function, used to declare your input data frame which includes a set of plot common aesthetics to be graphed. The hight of the bars, position and color of your bars and outline of the bars can be modified to your specifiations.
 
 
 ```{r}
@@ -110,8 +120,7 @@ plot_df <- data.frame(variables,
 
 # basic bar graph
 
-ggplot(plot_df, aes(x=variables,y=Means, # aestetics definition has gotten 
-                   # color=factor_two))+  # color here means the border collor
+ggplot(plot_df, aes(x=variables,y=Means, 
                    ))+
   geom_bar(stat="identity", 
            position="dodge",
@@ -119,7 +128,11 @@ ggplot(plot_df, aes(x=variables,y=Means, # aestetics definition has gotten
 
 ```
 
+THe above example shows a basic bar graph of the IV's and DV of the simulated ANOVA
 
+### Another way to graph the means is to pull the actual numerical means from the "means_variable"
+
+In the example below the numerical mean values are manually inserted into the "Means" variable
 
 ```{r}
 library(ggplot2)
@@ -141,99 +154,26 @@ ggplot(plot_df, aes(x=variables,y=Means, # aestetics definition has gotten
 
 ```
 
+## Summary
+
+sim.anova is part of an all encompasing package called "psych". It is a very useful function in psychological research, used for simulating a 3 way ANOVA with an arbitrary amounts of sample sizes, effect sizes as well as levels in each independent variable. In addition this function, the simulated data can be used to create an ANOVA table using an "aov" or "lm" function. Furthermore, by using the ggplot2 function the statistical data such as the means of the variables can be depicted graphically.
 
 ## Citations
 
-J. Cohen (1982) Set correlation as a general multivariate data-analytic method. Multivariate Behavioral Research, 17(3):301-341.
+Revelle, W. (n.d.). Psych. Retrieved June 24, 2019, from https://www.rdocumentation.org/packages/psych/versions/1.8.12/topics/sim.anova
 
-J. Cohen, P. Cohen, S.G. West, and L.S. Aiken. (2003) Applied multiple regression/correlation analysis for the behavioral sciences. L. Erlbaum Associates, Mahwah, N.J., 3rd ed edition.
-
-H. Hotelling. (1936) Relations between two sets of variates. Biometrika 28(3/4):321-377. E.Cramer and W. A. Nicewander (1979) Some symmetric, invariant measures of multivariate association. Psychometrika, 44:43-54.
-
-V. D. R. Guide Jr. and M. Ketokivim (2015) Notes from the Editors: Redefining some methodological criteria for the journal. Journal of Operations Management. 37. v-viii
-
-```{r}
-library(psych)
-sim.anova(es1 = 0, n = 2,n1 = 2, 
-    within=NULL,factors=TRUE,center = TRUE,std=TRUE)
-```
-
-
-```{r}
-sim.anova(es1 = 0, es2 = 0, es3 = 0, es12 = 0, es13 = 0,
-    es23 = 0, es123 = 0, es11=0,es22=0, es33=0,n = 2,n1 = 2, n2 = 2, n3 = 2, 
-    within=NULL,r=.8,factors=TRUE,center = TRUE,std=TRUE)
-```
-
-
-
-
-```{r}
-summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
-
-```
-
-
-```{r}
-library(ggplot2)
-ggplot(data.df)
-ggplot(data = data.df, aes(", n, ")) 
-  
-```
+Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, http://ggplot2.org.
 
 
 
 
 
 
-```{r}
-data.df <- sim.anova(es1=1, es2 = .5, es13 = 1)  # one main effect and one interaction
-describe(data.df)
-pairs.panels(data.df)
-summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
-
-```
-
-```{r}
-data.df <- sim.anova(es1=1, es2 = .5, es13 = 1)  # one main effect and one interaction
-describe(data.df)
-pairs.panels(data.df)
-summary(lm(DV~IV1*IV2*IV3,data=data.df))
-
-summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
-
-```
 
 
 
 
 
-```{r}
-data.df <- sim.anova(es1=1, es2 = .5, es123 = 1)  # one main effect and one interaction
-describe(data.df)
-pairs.panels(data.df)
-```
 
-```{r}
-data.df <- sim.anova(es1=1, es2 = .5, es123 = 1, n=5, n1=2, n2=2, n3=2)  # one main effect and one interaction
-describe(data.df)
-pairs.panels(data.df)
-```
-
-
-
-```{r}
-data.df <- sim.anova(es1=1, es2 = .5, es123 = 1, within=c(-1,0,1),n=10) # one main effect and one interaction
-describe(data.df)
-pairs.panels(data.df)
-
-```
-
-```{r}
-summary(aov(DV~IV1*IV2*IV3,data=data.df))
-
-summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
-
-```
 
 
