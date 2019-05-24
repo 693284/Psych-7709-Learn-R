@@ -6,27 +6,50 @@
 ## Introduction
 
 A sim.anova is a simulation function that falls under an all incompasing package called "psych." The sim.anova function enables one to simulate a three way ANOVA and generate a matrix design which will include three independent variables (independent variable 1,2 and 3). The simulated independent variables can have different number of levels as well as effect sizes for every main effect as well as interaction. The sim.anova function can also simulate one or multiple dependent variables. Since psychological research requires lots of time as well as resources, the sim.anova function is a very useful tool that enables a researcher to simulate and inspect data prior to conducting an actual experiment. In this tutorial I will demonstrate how to generate an analysis of variance with three independent variables, I will also demonstrate how to produce an output of an ANOVA table, and lastly how to use a ggplot2 package to plot the means. 
+For more information, see the <https://personalityproject.org/r> web page
 
+## Install ("psych")
 
-
- For more information, see the <https://personalityproject.org/r> web page
-
-## Functions for generating simulated data
-
-
-
+The first step to simulating data is to make sure that you have installed a "psych" package. This can be done in the packages window.
 
 ### Creating simulated data for three way ANOVA
 
-The fist step in creating a simulated data for 3-way ANOVA is to create a data frame function (data.df), this is where your sim.anova function will be placed (data.df <- sim.anova(). Since the sim.anova function can contain different arguments such as effect size as well as different levels of independent variables, firs lets identify these different arguments. The effect sizes are identified as "es1" "es2" and es3 for the effect size of the first, second and third  independent variable. The argument n stands for the sample size in each cell. The argument n1, n2 and n3 stand for numbers of levels in the independent variables one, two and three. By default the sim.anova function sets the effect sizes to zero, and levels in each independent variables to 2. 
+The fist step in creating a simulated data for 3-way ANOVA is to create a data frame function (data.df), this is where your sim.anova function will be placed (data.df <- sim.anova). Since the sim.anova function can contain different arguments such as the effect size as well as different levels of independent variables, the first step is to identify these different arguments. The effect sizes are identified as "es1" "es2" and es3 for the effect size of the first, second and third  independent variable. The argument n stands for the sample size in each cell. The argument n1, n2 and n3 stand for numbers of levels in the independent variables one, two and three. By default the sim.anova function sets the effect sizes to zero, and levels in each independent variables to 2. 
 
-# install.package("psych")
+
+
 ```{r}
-data.df <- sim.anova(es1=.5, es2=1, es3=2, n3=3)  # 1st section of code
+data.df <- sim.anova()  # 1st section of code
 describe(data.df)
 
 ```
-In the above example we are demonstrating that all of the rows, which measure a distinct variable with its corresponding value, belong to 1 subject (i.e. 1). This format is useful for analysis of repeated measures experiments in which the same subject may be asked about different benchmarks during the course of the experiment.
+In the above example we generated a 3 way ANOVA, where by default all of the effect sizes are zero for all independent variables and by default there are 2 levels in each independent variable. Also by default the sample size per cell is 2, since there are a total of 8 cells the n=16 as seen above.
+
+
+```{r}
+data.df <- sim.anova(es1=1, es2 = 0, es3 = 3)  # 1st section of code
+describe(data.df)
+
+```
+
+In the above example we manipulated the effect sizes for independent variabl 1,2 and 3
+
+```{r}
+data.df <- sim.anova(es1=1, es2 = 0, es3 = 3, es12 = 2, es13 = 2)  # 1st section of code
+describe(data.df)
+
+```
+In the above example we also manipulated the effect sizes of the interaction between independent variable 1 and 2 (es12), as well as the effect size for interaction between IV1 and IV2
+
+```{r}
+data.df <- sim.anova(es1=1, es2 = 0, es3 = 3, es12 = 2, es13 = 2, n=3)  # 1st section of code
+describe(data.df)
+
+```
+
+The above example was manipulated to have a cell sample size equal to 3 (n=3)
+
+
 
 ### create a table
 
