@@ -5,7 +5,7 @@
 
 ## Introduction
 
-A sim.anova is a simulation function that falls under an all incompasing package called "psych." The sim.anova function enables one to 
+A sim.anova is a simulation function that falls under an all incompasing package called "psych." The sim.anova function enables one to simulate a three way ANOVA and generate a matrix design which will include three independent variables (independent variable 1,2 and 3). The simulated independent variables can have different number of levels as well as effect sizes for every main effect as well as interaction. The sim.anova function can also simulate one or multiple dependent variables. Since psychological research requires lots of time as well as resources, the sim.anova function is a very useful tool that enables a researcher to simulate and inspect data prior to conducting an actual experiment. In this tutorial I will demonstrate how to generate an analysis of variance with three independent variables, I will also demonstrate how to produce an output of an ANOVA table, and lastly how to use a ggplot2 package to plot the means. 
 
 
 
@@ -13,133 +13,80 @@ A sim.anova is a simulation function that falls under an all incompasing package
 
 ## Functions for generating simulated data
 
-There are numerous functions included in the package for the sole purpose of generating simulated data. The package 
-
-includes the following functions:
 
 
-sim The basic simulation functions 
 
-sim.anova  Used to generate 3 independent variables and 1 or more dependent variables for demonstrating ANOVA and lm designs 
+### Creating simulated data for three way ANOVA
 
-sim.circ Generate a two dimensional circumplex item structure 
+The fist step in creating a simulated data for 3-way ANOVA is to create a data frame function (data.df), this is where your sim.anova function will be placed (data.df <- sim.anova(). Since the sim.anova function can contain different arguments such as effect size as well as different levels of independent variables, firs lets identify these different arguments. The effect sizes are identified as "es1" "es2" and es3 for the effect size of the first, second and third  independent variable. The argument n stands for the sample size in each cell. The argument n1, n2 and n3 stand for numbers of levels in the independent variables one, two and three. By default the sim.anova function sets the effect sizes to zero, and levels in each independent variables to 2. 
 
-sim.item Generate a two dimensional simple structure with particular item characteristics 
+# install.package("psych")
+```{r}
+data.df <- sim.anova(es1=.5, es2=1, es3=2, n3=3)  # 1st section of code
+describe(data.df)
 
-sim.congeneric Generate a one factor congeneric reliability structure 
+```
+In the above example we are demonstrating that all of the rows, which measure a distinct variable with its corresponding value, belong to 1 subject (i.e. 1). This format is useful for analysis of repeated measures experiments in which the same subject may be asked about different benchmarks during the course of the experiment.
 
-sim.minor Simulate nfact major and nvar/2 minor factors 
-
-sim.structural Generate a multifactorial structural model 
-
-sim.irt Generate data for a 1, 2, 3 or 4 parameter logistic model 
-
-sim.VSS Generate simulated data for the factor model 
-
-phi.demo Create artificial data matrices for teaching purposes 
-
-sim.hierarchical Generate simulated correlation matrices with hierarchical or any structure 
-
-sim.spherical Generate three dimensional spherical data (generalization of circumplex to 3 space)
-
-
-When teaching or studying basic statistics it is very beneficial to Simulate a 3 way balanced ANOVA or linear model, 
-
-with or without repeated measures. Description For teaching basic statistics, it is useful to be capable of generating 
-
-various illustrations fitting for analysis of variance or simple linear models. A function sim.anova, which enables one 
-to simulate a 3-way ANOVA or linear model, either with repeated measures or without repeated measures. What sim.anova 
-
-will be able to do is to generate the design matrix that includes three independent variables (IV1, IV2, IV3). The 
-
-independent variables can include any random number of levels and effect sizes for each main effect and interaction. 
-
-Independent variables can be specified as either continuous or categorical as well as have linear or quadratic effects. 
-
-Using a specified model, one can generate either a single dependent variable or multiple (within subject) dependent 
-
-variables. “The repeated measures are assumed to be tau equivalent with a specified reliability.”
-
-
-### Example of Usage 
-
-sim.anova(es1 = 0, es2 = 0, es3 = 0, es12 = 0, es13 = 0, es23 = 0, es123 = 0, es11=0,es22=0, es33=0,n = 2,n1 = 2, n2 = 
-
-2, n3 = 2, within=NULL,r=.8,factors=TRUE,center = TRUE,std=TRUE)
-
-In the above example the arguments are as follows:
-
-es1 - Effect size of IV1 
-
-es2 -  Effect size of IV2 
-
-es3 - Effect size of IV3 
-
-es12 - Effect size of the IV1 x IV2 interaction 
-
-es13 - Effect size of the IV1 x IV3 interaction 
-
-es23 - Effect size of the IV2 x IV3 interaction 
-
-es123 - Effect size of the IV1 x IV2 * IV3 interaction 
-
-es11 - Effect size of the quadratric term of IV1 
-
-es22 - Effect size of the quadratric term of IV2 
-
-es33 - Effect size of the quadratric term of IV3 
-
-n - Sample size per cell (if all variables are categorical) or (if at least one variable is continuous), the total 
-
-sample size 
-
-n1 - Number of levels of IV1 (0) if continuous 
-
-n2 - Number of levels of IV2 
-
-n3 - Number of levels of IV3 within if not NULL, then within should be a vector of the means of any repeated measures. 
-
-r - the correlation between the repeated measures (if they exist). This can be thought of as the reliability of the 
-
-measures. 
-
-factors - report the IVs as factors rather than numeric 
-
-center - center=TRUE provides orthogonal contrasts, center=FALSE adds the minimum value + 1 to all contrasts 
-
-std - Standardize the effect sizes by standardizing the IVs
-
+### create a table
 
 ###  Details 
 
-The function is used to generate a simple simulation for teaching about ANOVA, regression and reliability. A variety of 
-demonstrations of the relation between anova and lm can be generated. 
+```{r}
+describe(data.df)[,3]
+```
 
-The function’s default is to generate categorical IVs (factors). When using more than two levels of an IV, it will show 
-the difference between the linear model and anova in terms of the comparisons made. 
-
-The within vector can be used to add related equivalent dependent variables. These will have intercorrelations 
-
-(reliabilities) of r and means as specified as values of within. 
-
-To establish the effect of centered versus non-centering, make factors = center=FALSE. The default is to center the 
-
-IVs. The lower order effects will be incorrect given the higher order interaction terms if you will not center the 
-
-IV’s.
+```{r}
+means_variable <- describe(data.df)[,3]
+```
 
 
-Value 
+```{r}
+library(ggplot2)
+means_variable <- as.data.frame(means_variable)
+Means <- means_variable
+ind_vars <- (IV1*)
+ggplot(means_variable,aes(x = Means, y = ind_vars))+ 
+  geom_point() 
+```
 
-y.df is a data.frame of the 3 IV values as well as the DV values. 
 
-IV1 ... IV3 – are independent variables from 1 ... 3 
+```{r}
+library(ggplot2)
+Names <-rep(c("Dara", "Azalea", "Barbi", "Rowena", "Fiona"),each=2)
+MF <- rnorm(10,45,25) # 10 is the number of numbers you want, and 45 to 25 is the range
+Condition <- rep(c("Social","NonSocial"),5)
+Aversity <- rep(c("A","N_A" ),times=c(4,6))
+  plot_df <- data.frame(Names, MF, Condition, Aversity)
+  
+  ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+
+    geom_line()+
+    geom_text(label=Names)+
+    theme_classic()
 
-DV - If there is a single dependent variable 
+```
 
-DV.1 ... DV.n - If you are specifying within, then the n within subject dependent variables
 
-See also a general set of simulation functions in the psych package sim
+```{r}
+library(ggplot2)
+ivs <- rep(c(IV1,IV2,I)
+  means_of_var <- c(20,20,4,50,48,52,60)
+  figure_df <- data.frame(nonsocial_risk,social_risk)
+  
+  ggplot(figure_df, aes(x=nonsocial_risk,y=social_risk)) + 
+    geom_point(size=3) + 
+    geom_smooth(method="lm", se = FALSE) +
+    theme_classic() +
+    xlab("Avarage Frequency of Non Social Risk") +
+    ylab("Avarage Frequency of Social Risk") +
+    scale_y_continuous(breaks = seq(0, 100, by = 10)) +
+    scale_x_continuous(breaks = seq(0, 100, by = 10))
+
+```
+
+
+
+
 
 
 ### Let’s look at an example of simulated data below
@@ -211,11 +158,25 @@ sim.anova(es1 = 0, es2 = 0, es3 = 0, es12 = 0, es13 = 0,
 ```
 
 
+
+
 ```{r}
-data.df <- sim.anova(es1=8, es2 = 10, es12 = 5, n1=2, n2=2)  # one main effect and one interaction
-describe(data.df)
-pairs.panels(data.df)
+summary(aov(DV~IV1*IV2*IV3,data=data.df)) #compare with the lm model
+
 ```
+
+
+```{r}
+library(ggplot2)
+ggplot(data.df)
+ggplot(data = data.df, aes(", n, ")) 
+  
+```
+
+
+
+
+
 
 ```{r}
 data.df <- sim.anova(es1=1, es2 = .5, es13 = 1)  # one main effect and one interaction
